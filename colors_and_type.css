@@ -1,0 +1,374 @@
+/* ========================================================================
+   YWAM Château — Colors & Type
+   A palette and type system for a brand that sits between the intercessory
+   and the active. Rooted, bilingual, unperformed.
+
+   Grown, not built.
+   ======================================================================== */
+
+/* -------------------------------- Fonts --------------------------------- */
+/* Cormorant Garamond and Inter via Google Fonts on each surface:
+     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+   Noto Serif KR and Noto Sans KR are now self-hosted from /fonts as
+   variable fonts (one file each, covering weights 100–900). The @font-face
+   blocks below make them available on every surface that imports this
+   stylesheet — no Google Fonts link needed for those families.
+
+   Cormorant Garamond is the serif workhorse — headings, display, italic
+   accent. Inter carries navigation, metadata, buttons, forms. Noto Serif
+   KR and Noto Sans KR pair with Cormorant and Inter respectively; the
+   Korean serif is leaned one weight heavier than its English partner to
+   achieve PERCEIVED equal presence (see --ko-serif-lean).
+   ======================================================================== */
+
+@font-face {
+  font-family: "Noto Serif KR";
+  src: url("fonts/NotoSerifKR-VariableFont_wght.ttf") format("truetype-variations"),
+       url("fonts/NotoSerifKR-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  src: url("fonts/NotoSansKR-VariableFont_wght.ttf") format("truetype-variations"),
+       url("fonts/NotoSansKR-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ------------------------------- Colors ------------------------------- */
+  /* Primary warm palette — the canvas, the fire, the quiet, the ink.      */
+  --cream:      #F5F0E8;   /* main page background — warm, not stark      */
+  --blush:      #E8D4C6;   /* secondary panel, card background             */
+  --gold:       #C8922A;   /* primary CTA / accent / fire                  */
+  --gold-deep:  #A8791E;   /* gold pressed / link hover                    */
+  --sage:       #8FA68E;   /* supporting green — quiet, second voice       */
+  --terra:      #C57B57;   /* italic-accent color, warmth                  */
+  --stone:      #2B2620;   /* near-black ink for headers + body            */
+  --stone-soft: #4A4037;   /* muted body copy                              */
+  --pale-sky:   #D4DEE2;   /* cool accent used alongside warm palette      */
+
+  /* Secondary — OneKorea / OKDTS testimony accent family.                 */
+  /* Only appears in OneKorea contexts. Never on primary brand surfaces.   */
+  --ok-deep:    #1A2A3A;   /* 깊은 원천 — dark OKDTS background            */
+  --ok-falls:   #3A6878;   /* 폭포 — One Korea accent                      */
+  --ok-mist:    #8EB8C2;   /* 안개 — OKDTS primary                         */
+  --ok-reach:   #B8D8E4;   /* 닿음 — light surface                         */
+  --ok-sky:     #D4DEE2;   /* 하늘 — breathing section                     */
+
+  /* Extended neutrals (for UI kit / forms / dividers).                    */
+  --stone-900: #1a1713;
+  --stone-700: #3A322B;
+  --stone-500: #6C6258;
+  --stone-400: #8A8178;
+  --stone-300: #AFA79D;
+  --stone-200: #CEC7BD;
+  --stone-100: #E8E4DC;   /* a.k.a. linen */
+  --paper:     #FFFFFF;
+
+  /* Legacy aliases — keep older preview cards working during transition. */
+  --ink:           var(--stone);
+  --foundation:    var(--stone);
+  --bone:          var(--stone-100);
+  --linen:         var(--stone-100);
+  --interior:      var(--cream);
+  --touch:         var(--blush);
+  --hearth:        var(--terra);
+  --amber:         var(--gold);
+  --amber-deep:    var(--gold-deep);
+  --moss:          var(--sage);
+  --moss-soft:     var(--sage);
+  --moss-deep:     #2A3D28;
+  --refuge-forest: #2A3D28;
+  --garden:        var(--sage);
+
+  /* ---------------------------- Semantic -------------------------------- */
+  --bg:          var(--cream);
+  --bg-alt:      var(--blush);
+  --bg-panel:    var(--stone-100);
+  --bg-inverse:  var(--stone);
+  --bg-brand:    var(--gold);
+
+  --fg:          var(--stone);
+  --fg-muted:    var(--stone-soft);
+  --fg-subtle:   var(--stone-400);
+  --fg-inverse:  var(--cream);
+  --fg-brand:    var(--gold-deep);
+  --fg-accent:   var(--terra);
+
+  --border:      color-mix(in oklab, var(--stone) 14%, transparent);
+  --border-soft: color-mix(in oklab, var(--stone) 7%, transparent);
+  --divider:     color-mix(in oklab, var(--stone) 18%, transparent);
+
+  --shadow-sm:   0 1px 2px rgba(43,38,32,0.06), 0 1px 1px rgba(43,38,32,0.04);
+  --shadow-md:   0 14px 40px -12px rgba(43,38,32,0.25);
+  --shadow-lg:   0 24px 60px -30px rgba(43,38,32,0.25);
+
+  /* ------------------------------ Type ---------------------------------- */
+  --font-serif:      "Cormorant Garamond", "EB Garamond", Georgia, serif;
+  --font-sans:       "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-serif-ko:   "Noto Serif KR", "Cormorant Garamond", serif;
+  --font-sans-ko:    "Noto Sans KR", "Inter", sans-serif;
+  --font-mono:       "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --font-display:    var(--font-serif);
+
+  /* Korean-serif optical lean — Noto Serif KR reads lighter than Cormorant
+     at matched weight, so we push its weight one step up to achieve
+     PERCEIVED equal presence when paired. */
+  --ko-serif-lean:   500;
+
+  /* Scale — tuned for 1440 desktop. Hero goes larger via clamp().         */
+  --fs-display-xl: clamp(72px, 10vw, 168px);
+  --fs-display-l:  clamp(56px, 7.5vw, 104px);
+  --fs-display-m:  clamp(40px, 5vw, 68px);
+  --fs-h1:         clamp(48px, 7vw, 92px);
+  --fs-h2:         clamp(36px, 5vw, 64px);
+  --fs-h3:         clamp(26px, 2.6vw, 34px);
+  --fs-h4:         clamp(20px, 1.6vw, 24px);
+  --fs-body-xl:    19px;
+  --fs-body-l:     18px;
+  --fs-body:       17px;
+  --fs-body-s:     15px;
+  --fs-meta:       13px;
+  --fs-micro:      12px;
+  --fs-eyebrow:    12px;
+
+  --lh-display:    1.08;
+  --lh-tight:      1.1;
+  --lh-snug:       1.25;
+  --lh-body:       1.7;
+  --lh-loose:      1.75;
+
+  --tracking-tight:   -0.015em;
+  --tracking-snug:    -0.01em;
+  --tracking-normal:  0;
+  --tracking-eyebrow: 0.22em;
+  --tracking-badge:   0.14em;
+
+  /* ---------------------------- Spacing --------------------------------- */
+  --space-0:   0;
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   24px;
+  --space-6:   32px;
+  --space-7:   48px;
+  --space-8:   64px;
+  --space-9:   96px;
+  --space-10: 128px;
+  --space-11: 160px;
+
+  --section-pad: 120px;
+  --container:         1240px;
+  --container-narrow:  920px;
+  --gutter: 28px;
+
+  --radius-none: 0;
+  --radius-xs:   4px;
+  --radius-sm:   6px;
+  --radius-md:   14px;
+  --radius-lg:   28px;
+  --radius-pill: 999px;
+}
+
+/* ---------------------------- Base elements ----------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { color: var(--fg); background: var(--bg); scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--fg);
+  background: var(--bg);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; display: block; }
+
+/* Display — posters, hero slides, section openers. Cormorant 500/italic.  */
+.display-xl, .display-l, .display-m {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: var(--lh-display);
+  letter-spacing: var(--tracking-snug);
+  color: var(--stone);
+}
+.display-xl { font-size: var(--fs-display-xl); }
+.display-l  { font-size: var(--fs-display-l); }
+.display-m  { font-size: var(--fs-display-m); }
+
+/* Italic accent — the brand's signature. Cormorant italic, terracotta.   */
+em, .accent-italic {
+  font-style: italic;
+  color: var(--terra);
+  font-weight: inherit;
+}
+
+/* Eyebrow — letter-spaced Inter, uppercase, with a colored dot on the
+   left. This is the primary section-label idiom.                         */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--stone-soft);
+  margin: 0 0 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.eyebrow .dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex: none;
+}
+
+/* Headings — Cormorant 500, tight line-height, optical tracking.         */
+h1, .h1 { font-family: var(--font-serif); font-weight: 500; font-size: var(--fs-h1); line-height: var(--lh-display); letter-spacing: var(--tracking-tight); margin: 0 0 var(--space-4); color: var(--stone); }
+h2, .h2 { font-family: var(--font-serif); font-weight: 500; font-size: var(--fs-h2); line-height: var(--lh-tight);    letter-spacing: var(--tracking-snug);  margin: 0 0 var(--space-4); color: var(--stone); }
+h3, .h3 { font-family: var(--font-serif); font-weight: 500; font-size: var(--fs-h3); line-height: var(--lh-snug);     margin: 0 0 var(--space-3); color: var(--stone); }
+h4, .h4 { font-family: var(--font-serif); font-weight: 500; font-size: var(--fs-h4); line-height: var(--lh-snug);     margin: 0 0 var(--space-2); color: var(--stone); }
+
+/* Body + supporting type.                                                 */
+p  { margin: 0 0 1.2em; max-width: 68ch; text-wrap: pretty; }
+p:last-child { margin-bottom: 0; }
+.lede { font-size: var(--fs-body-l); line-height: var(--lh-body); color: var(--stone-soft); max-width: 560px; }
+.meta { font-family: var(--font-sans); font-size: var(--fs-meta); color: var(--stone-soft); letter-spacing: 0.02em; }
+.caption {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--stone-soft);
+}
+
+/* Blockquote — Cormorant italic, terracotta-adjacent.                     */
+blockquote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--stone);
+  margin: 0;
+  max-width: 56ch;
+}
+
+/* Links — moss-to-ink hover in body copy, gold-underlined in editorial.   */
+a { color: inherit; text-decoration: none; }
+a.link {
+  color: var(--stone);
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 2px;
+  transition: color .2s ease, border-color .2s ease;
+}
+a.link:hover { color: var(--gold-deep); }
+
+code, pre, .mono { font-family: var(--font-mono); font-size: 0.92em; }
+
+hr { border: 0; border-top: 1px solid var(--divider); margin: var(--space-6) 0; }
+
+/* Korean / English pairing — side by side at perceived equal weight.     */
+/* The Korean line sits under the English line by default, same size,
+   same color, weight leaned up by one step.                              */
+.ko {
+  font-family: var(--font-sans-ko);
+  font-weight: inherit;
+}
+h1 .ko, h2 .ko, h3 .ko, h4 .ko,
+.display-xl .ko, .display-l .ko, .display-m .ko {
+  font-family: var(--font-serif-ko);
+  font-weight: var(--ko-serif-lean);
+  letter-spacing: -0.005em;
+  display: block;
+  margin-top: 0.25em;
+}
+blockquote .ko {
+  font-family: var(--font-serif-ko);
+  font-style: normal;
+  font-weight: var(--ko-serif-lean);
+  font-size: 17px;
+  display: block;
+  margin-top: 14px;
+}
+.pair-en, .pair-ko { display: block; }
+.pair-ko { margin-top: 14px; font-family: var(--font-sans-ko); color: inherit; }
+.pair-ko.serif { font-family: var(--font-serif-ko); font-weight: var(--ko-serif-lean); }
+
+/* Hand-drawn underline — one-word emphasis in display type.              */
+.handline {
+  display: inline-block;
+  position: relative;
+}
+.handline::after {
+  content: "";
+  position: absolute;
+  left: 2%; right: 2%;
+  bottom: -6px;
+  height: 14px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 14' preserveAspectRatio='none'><path d='M2 9 C 60 2, 120 14, 180 6 S 280 10, 298 5' fill='none' stroke='%23C8922A' stroke-width='2.5' stroke-linecap='round'/></svg>") center/100% 100% no-repeat;
+}
+
+/* Buttons — pill radius, Inter 500.                                       */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 28px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--stone);
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.btn .btn-ko { opacity: 0.78; font-family: var(--font-sans-ko); font-size: 13px; font-weight: 500; }
+.btn--gold  { background: var(--gold);  color: var(--cream); box-shadow: 0 1px 0 rgba(43,38,32,0.06), 0 10px 24px -12px rgba(200,146,42,0.55); }
+.btn--gold:hover  { background: var(--gold-deep); transform: translateY(-1px); }
+.btn--stone { background: var(--stone); color: var(--cream); }
+.btn--stone:hover { background: var(--stone-900); transform: translateY(-1px); }
+.btn--ghost { background: transparent; color: var(--stone); border-color: rgba(43,38,32,0.25); }
+.btn--ghost:hover { border-color: var(--stone); background: rgba(43,38,32,0.04); }
+
+/* Tag / chip — small metadata pill. Used for dates, languages, cohorts.  */
+.tag, .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid rgba(43,38,32,0.2);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: var(--tracking-badge);
+  text-transform: uppercase;
+  color: var(--stone-soft);
+  background: transparent;
+}
+
+/* Card-tag — inline label above a card heading.                          */
+.card-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--stone-soft);
+  margin-bottom: 4px;
+}
+.card-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }

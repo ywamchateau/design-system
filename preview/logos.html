@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Logos</title>
+<link rel="stylesheet" href="../colors_and_type.css?v=20260427" />
+<style id="__inline_tokens">
+:root{
+  --cream:#F5F0E8; --blush:#E8D4C6; --gold:#C8922A; --gold-deep:#A8791E;
+  --sage:#8FA68E; --terra:#C57B57; --stone:#2B2620; --stone-soft:#4A4037;
+  --moss-deep:#426930; --refuge-forest:#426930;
+  --stone-100:#E8E4DC; --stone-300:#AFA79D; --stone-400:#8A8178;
+  --paper:#FFFFFF;
+  --bg:var(--cream); --fg:var(--stone); --fg-muted:var(--stone-soft);
+  --border:rgba(43,38,32,0.14); --border-soft:rgba(43,38,32,0.07);
+  --font-serif:"Cormorant Garamond","EB Garamond",Georgia,serif;
+  --font-sans:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --radius-md:14px;
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; }
+  body {
+    font-family: var(--font-sans); color: var(--fg);
+    background: var(--cream); padding: 56px;
+  }
+  .head { margin-bottom: 40px; max-width: 64ch; }
+  .eye {
+    font-family: var(--font-sans); font-weight: 500;
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--fg-muted); display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: 14px;
+  }
+  .eye .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+  h1 {
+    font-family: var(--font-serif); font-weight: 500;
+    font-size: 44px; line-height: 1.05; margin: 0 0 12px; letter-spacing: -0.015em;
+  }
+  h1 em { font-style: italic; color: var(--moss-deep); font-weight: 500; }
+  .lede { font-size: 14px; line-height: 1.6; color: var(--fg-muted); margin: 0; max-width: 60ch; }
+
+  .grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 18px; margin-top: 36px;
+  }
+  .tile {
+    border-radius: var(--radius-md); overflow: hidden;
+    border: 1px solid var(--border-soft);
+    display: flex; flex-direction: column;
+  }
+  .frame {
+    aspect-ratio: 4 / 3;
+    display: grid; place-items: center;
+    padding: 36px;
+  }
+  .frame img { max-width: 100%; max-height: 100%; display: block; }
+  .meta {
+    padding: 14px 18px; background: var(--paper);
+    border-top: 1px solid var(--border-soft);
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 12px;
+  }
+  .meta .name { font-weight: 500; color: var(--fg); }
+  .meta .file { font-family: var(--font-mono); font-size: 10.5px; color: var(--fg-muted); letter-spacing: 0.02em; }
+
+  .bg-cream { background: var(--cream); }
+  .bg-paper { background: var(--paper); }
+  .bg-stone { background: var(--stone); }
+  .bg-moss  { background: var(--moss-deep); }
+  .bg-blush { background: var(--blush); }
+
+  .section-label {
+    font-family: var(--font-sans); font-weight: 500;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--fg-muted); margin: 44px 0 14px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--border-soft);
+  }
+
+  .clearance {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px;
+  }
+  .clearance .tile .frame { padding: 56px; position: relative; }
+  .clearance .guides {
+    position: absolute; inset: 32px;
+    border: 1px dashed rgba(43,38,32,0.18);
+    pointer-events: none;
+  }
+  .rules {
+    margin-top: 36px; padding: 28px; background: var(--paper);
+    border: 1px solid var(--border-soft); border-radius: var(--radius-md);
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px;
+  }
+  .rule h4 {
+    font-family: var(--font-sans); font-weight: 500; font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-muted);
+    margin: 0 0 8px;
+  }
+  .rule p { font-size: 13.5px; line-height: 1.6; margin: 0; color: var(--fg); }
+  .rule p em { font-style: italic; color: var(--moss-deep); }
+</style>
+</head>
+<body>
+  <div class="head">
+    <span class="eye"><span class="dot"></span>Brand · Logos</span>
+    <h1>The mark, in <em>three weights</em>.</h1>
+    <p class="lede">Two flame-like forms cradling the chateau, with an interior cross. Use the green for primary brand applications, black for editorial and print, white only on dark or photographic backgrounds.</p>
+  </div>
+
+  <div class="section-label">Horizontal lockup</div>
+  <div class="grid">
+    <div class="tile">
+      <div class="frame bg-cream"><img src="../assets/logos/logo-horizontal-green.svg" alt="Horizontal logo, green" /></div>
+      <div class="meta"><span class="name">Green · primary</span><span class="file">#426930</span></div>
+    </div>
+    <div class="tile">
+      <div class="frame bg-paper"><img src="../assets/logos/logo-horizontal-black.svg" alt="Horizontal logo, black" /></div>
+      <div class="meta"><span class="name">Black · editorial</span><span class="file">#000000</span></div>
+    </div>
+    <div class="tile">
+      <div class="frame bg-stone"><img src="../assets/logos/logo-horizontal-white.svg" alt="Horizontal logo, white" /></div>
+      <div class="meta"><span class="name">White · reverse</span><span class="file">on dark</span></div>
+    </div>
+  </div>
+
+  <div class="section-label">Vertical lockup</div>
+  <div class="grid">
+    <div class="tile">
+      <div class="frame bg-cream"><img src="../assets/logos/logo-vertical-green.svg" alt="Vertical logo, green" style="max-height: 220px;" /></div>
+      <div class="meta"><span class="name">Green · primary</span><span class="file">#426930</span></div>
+    </div>
+    <div class="tile">
+      <div class="frame bg-paper"><img src="../assets/logos/logo-vertical-black.svg" alt="Vertical logo, black" style="max-height: 220px;" /></div>
+      <div class="meta"><span class="name">Black · editorial</span><span class="file">#000000</span></div>
+    </div>
+    <div class="tile">
+      <div class="frame bg-moss"><img src="../assets/logos/logo-vertical-white.svg" alt="Vertical logo, white" style="max-height: 220px;" /></div>
+      <div class="meta"><span class="name">White · reverse</span><span class="file">on moss</span></div>
+    </div>
+  </div>
+
+  <div class="section-label">Icon mark — for tight spaces</div>
+  <div class="grid">
+    <div class="tile">
+      <div class="frame bg-cream"><img src="../assets/logos/icon-vertical-green.svg" alt="Icon, green" style="max-height: 140px;" /></div>
+      <div class="meta"><span class="name">Icon · green</span><span class="file">avatars · favicons</span></div>
+    </div>
+    <div class="tile">
+      <div class="frame bg-paper"><img src="../assets/logos/icon-horizontal-black.svg" alt="Icon, black" style="max-height: 80px;" /></div>
+      <div class="meta"><span class="name">Icon · black</span><span class="file">stamps · letterhead</span></div>
+    </div>
+    <div class="tile">
+      <div class="frame bg-blush"><img src="../assets/logos/icon-vertical-white.svg" alt="Icon, white" style="max-height: 140px;" /></div>
+      <div class="meta"><span class="name">Icon · white</span><span class="file">on photographic</span></div>
+    </div>
+  </div>
+
+  <div class="section-label">Clearance & minimum size</div>
+  <div class="clearance">
+    <div class="tile">
+      <div class="frame bg-cream">
+        <span class="guides"></span>
+        <img src="../assets/logos/logo-horizontal-green.svg" alt="Logo with clearance" style="max-width: 70%;" />
+      </div>
+      <div class="meta"><span class="name">Clearance</span><span class="file">≥ height of "Y"</span></div>
+    </div>
+    <div class="tile">
+      <div class="frame bg-cream"><img src="../assets/logos/logo-horizontal-green.svg" alt="Logo at minimum size" style="height: 22px; width: auto;" /></div>
+      <div class="meta"><span class="name">Minimum · digital</span><span class="file">22px height</span></div>
+    </div>
+  </div>
+
+  <div class="rules">
+    <div class="rule">
+      <h4>Do</h4>
+      <p>Lead with the <em>green</em> mark on cream or paper. Use the icon alone only when the wordmark has appeared elsewhere on the surface.</p>
+    </div>
+    <div class="rule">
+      <h4>Don't</h4>
+      <p>Don't recolor the mark, add effects, place on busy photography without a tint, or stretch the lockup. Don't use the white mark on light backgrounds.</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,196 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   YWAM Château — Tweaks CSS
+   Maps three data-attributes on <html> to expressive, doc-wide remixes.
+   Loaded AFTER the main stylesheet so it overrides cleanly.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ─── MOOD ──────────────────────────────────────────────────────────────
+   Each mood is a complete swap of the foundation. The whole design
+   inherits because every surface uses --cream / --moss-deep / --stone
+   from these tokens.
+   ─────────────────────────────────────────────────────────────────────── */
+
+/* Chateau (default) — warm cream + moss + gold. Already defined in :root. */
+
+html[data-mood="cellar"] {
+  --cream:#26211C;          /* deep stone surface */
+  --paper:#1A1611;
+  --blush:#3A2F26;
+  --stone:#F5F0E8;          /* invert: ink is now warm cream */
+  --stone-soft:#C9BEAF;
+  --stone-100:#3A322B; --stone-200:#5A4F44; --stone-300:#7A6E60;
+  --stone-400:#9C8E7C; --stone-500:#B8A993; --stone-700:#E5DCCB;
+  --moss-deep:#6F9550;      /* lifted moss, reads on dark */
+  --gold:#D9A648;
+  --gold-deep:#E9BB5C;
+  --sage:#A4B89E;
+  --terra:#D89572;
+  --border:rgba(245,240,232,0.18);
+  --border-soft:rgba(245,240,232,0.10);
+}
+html[data-mood="cellar"] body {
+  background: #1A1611;
+  color: var(--stone);
+}
+html[data-mood="cellar"] .cover { background: #1A1611; }
+/* Section bands and surfaces that explicitly used cream get re-keyed */
+html[data-mood="cellar"] .id-card.bg-cream,
+html[data-mood="cellar"] .id-card.bg-paper,
+html[data-mood="cellar"] .icon-app.on-cream,
+html[data-mood="cellar"] .icon-app.on-paper {
+  background: #2C2620; color: var(--stone);
+}
+html[data-mood="cellar"] .toc li { border-top-color: var(--border-soft); }
+
+html[data-mood="cloister"] {
+  --cream:#FAFAF7;          /* near-white paper */
+  --paper:#FFFFFF;
+  --blush:#EDE9E1;
+  --stone:#1F1D1A;
+  --stone-soft:#5C5650;
+  --moss-deep:#5E7A4F;      /* softer, more sage-leaning green */
+  --sage:#7A9276;
+  --gold:#9A7E3F;           /* desaturated gold */
+  --gold-deep:#7A6430;
+  --terra:#A86C4D;
+  --border:rgba(31,29,26,0.10);
+  --border-soft:rgba(31,29,26,0.06);
+}
+html[data-mood="cloister"] body { background: var(--cream); }
+
+
+/* ─── VOICE ─────────────────────────────────────────────────────────────
+   The italic accent word is the brand's signature. Three voices.
+   We target every <em> inside narrative content (h1, h2, h3, h4, h5,
+   blockquote, p, .h, .line, .name) but leave inline-styled <em>s alone
+   only if they have explicit color overrides — those keep their color
+   but pick up the family/style here.
+   ─────────────────────────────────────────────────────────────────────── */
+
+/* Editorial (default) — Cormorant italic. Already in stylesheet. */
+
+html[data-voice="poster"] h1 em,
+html[data-voice="poster"] h2 em,
+html[data-voice="poster"] h3 em,
+html[data-voice="poster"] h4 em,
+html[data-voice="poster"] h5 em,
+html[data-voice="poster"] blockquote em,
+html[data-voice="poster"] p em,
+html[data-voice="poster"] .line em,
+html[data-voice="poster"] .h em,
+html[data-voice="poster"] .name em {
+  font-family: "Travel Poster Sans", var(--font-serif) !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.005em;
+}
+
+html[data-voice="script"] h1 em,
+html[data-voice="script"] h2 em,
+html[data-voice="script"] h3 em,
+html[data-voice="script"] h4 em,
+html[data-voice="script"] h5 em,
+html[data-voice="script"] blockquote em,
+html[data-voice="script"] p em,
+html[data-voice="script"] .line em,
+html[data-voice="script"] .h em,
+html[data-voice="script"] .name em {
+  font-family: "Travel Poster Script", "Cormorant Garamond", cursive !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.01em;
+  /* Script glyphs are taller & narrower — gently lift to match cap height */
+  font-size: 1.08em;
+  line-height: 0.9;
+  display: inline-block;
+  transform: translateY(0.04em);
+}
+
+
+/* ─── DENSITY ───────────────────────────────────────────────────────────
+   Reshape the rhythm. Spacious is current. Editorial tightens. Plaque
+   compresses dramatically — feels like a museum label.
+   ─────────────────────────────────────────────────────────────────────── */
+
+/* Spacious (default) — current values. */
+
+html[data-density="editorial"] {
+  --density-pad:   72px;
+  --density-block: 96px;     /* between subsections */
+  --density-h1:    104px;
+  --density-h2:    72px;
+  --density-num:   144px;
+  --density-toc:   20px;
+}
+
+html[data-density="plaque"] {
+  --density-pad:   48px;
+  --density-block: 64px;
+  --density-h1:    76px;
+  --density-h2:    52px;
+  --density-num:   108px;
+  --density-toc:   17px;
+}
+
+/* Apply when density variables are set */
+html[data-density="editorial"] .page,
+html[data-density="plaque"] .page {
+  padding-left:  var(--density-pad);
+  padding-right: var(--density-pad);
+  padding-top:   calc(var(--density-pad) * 0.9);
+  padding-bottom:calc(var(--density-pad) * 0.9);
+}
+html[data-density="editorial"] .subsection,
+html[data-density="plaque"] .subsection {
+  margin-bottom: var(--density-block);
+}
+html[data-density="editorial"] .cover h1,
+html[data-density="plaque"] .cover h1 {
+  font-size: clamp(48px, 7vw, var(--density-h1));
+  margin-bottom: 22px;
+}
+html[data-density="editorial"] .section h2,
+html[data-density="plaque"] .section h2 {
+  font-size: clamp(36px, 4.6vw, var(--density-h2)) !important;
+  line-height: 1.04;
+}
+html[data-density="editorial"] .section-num strong,
+html[data-density="plaque"] .section-num strong {
+  font-size: clamp(72px, 8.2vw, var(--density-num));
+}
+html[data-density="editorial"] .section-head,
+html[data-density="plaque"] .section-head {
+  margin-bottom: calc(var(--density-block) * 0.6);
+}
+html[data-density="editorial"] .toc li,
+html[data-density="plaque"] .toc li {
+  font-size: var(--density-toc);
+  padding: 9px 0;
+}
+html[data-density="plaque"] .cover .lede {
+  font-size: 19px; max-width: 32ch; margin-bottom: 44px;
+}
+html[data-density="plaque"] .section .section-sub {
+  font-size: clamp(15px, 1.3vw, 17px);
+}
+
+
+/* ─── CELLAR-MODE FIXES ─────────────────────────────────────────────────
+   A few components paint their own backgrounds with hard-coded colors;
+   patch those for cellar so the whole doc reads as one mood.
+   ─────────────────────────────────────────────────────────────────────── */
+
+html[data-mood="cellar"] .swatch.warm-cream .chip,
+html[data-mood="cellar"] .swatch.warm-cream { color: var(--stone); }
+html[data-mood="cellar"] .toc { color: var(--stone); }
+html[data-mood="cellar"] .stamp .dot { background: var(--gold); }
+html[data-mood="cellar"] .principle .pair .yes,
+html[data-mood="cellar"] .principle .pair .no {
+  background: rgba(245,240,232,0.04);
+}
+html[data-mood="cellar"] .scale,
+html[data-mood="cellar"] .type-spec,
+html[data-mood="cellar"] .clearance-frame {
+  border-color: var(--border);
+}
+html[data-mood="cellar"] .harmony-card { border-color: var(--border-soft); }

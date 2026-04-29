@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Content slide</title>
+<link rel="stylesheet" href="../colors_and_type.css?v=20260425b" />
+
+<style id="__inline_tokens">
+:root{
+  --cream:#F5F0E8; --blush:#E8D4C6; --gold:#C8922A; --gold-deep:#A8791E;
+  --sage:#8FA68E; --terra:#C57B57; --stone:#2B2620; --stone-soft:#4A4037;
+  --pale-sky:#D4DEE2;
+  --ok-deep:#1A2A3A; --ok-falls:#3A6878; --ok-mist:#8EB8C2; --ok-reach:#B8D8E4; --ok-sky:#D4DEE2;
+  --stone-900:#1a1713; --stone-700:#3A322B; --stone-500:#6C6258; --stone-400:#8A8178;
+  --stone-300:#AFA79D; --stone-200:#CEC7BD; --stone-100:#E8E4DC; --paper:#FFFFFF;
+  --ink:var(--stone); --foundation:var(--stone); --bone:var(--stone-100); --linen:var(--stone-100);
+  --interior:var(--cream); --touch:var(--blush); --hearth:var(--terra);
+  --amber:var(--gold); --amber-deep:var(--gold-deep); --moss:var(--sage); --moss-soft:var(--sage);
+  --moss-deep:#2A3D28; --refuge-forest:#2A3D28; --garden:var(--sage);
+  --bg:var(--cream); --bg-alt:var(--blush); --bg-panel:var(--stone-100); --bg-inverse:var(--stone); --bg-brand:var(--gold);
+  --fg:var(--stone); --fg-muted:var(--stone-soft); --fg-subtle:var(--stone-400); --fg-inverse:var(--cream);
+  --fg-brand:var(--gold-deep); --fg-accent:var(--terra);
+  --border:rgba(43,38,32,0.14); --border-soft:rgba(43,38,32,0.07); --divider:rgba(43,38,32,0.18);
+  --shadow-sm:0 1px 2px rgba(43,38,32,0.06),0 1px 1px rgba(43,38,32,0.04);
+  --shadow-md:0 14px 40px -12px rgba(43,38,32,0.25);
+  --shadow-lg:0 24px 60px -30px rgba(43,38,32,0.25);
+  --font-serif:"Cormorant Garamond","EB Garamond",Georgia,serif;
+  --font-sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --font-serif-ko:"Noto Serif KR","Cormorant Garamond",serif;
+  --font-sans-ko:"Noto Sans KR","Inter",sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --font-display:var(--font-serif);
+  --ko-serif-lean:500;
+  --radius-none:0; --radius-xs:4px; --radius-sm:6px; --radius-md:14px; --radius-lg:28px; --radius-pill:999px;
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; height: 100%; }
+  body { background: #000; display: grid; place-items: center; font-family: var(--font-sans); }
+  .slide {
+    width: 1280px; height: 720px;
+    background: var(--cream); color: var(--stone);
+    position: relative; padding: 76px 104px; box-sizing: border-box;
+  }
+  .eye {
+    font-family: var(--font-sans); font-weight: 500;
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--stone-soft);
+    display: inline-flex; align-items: center; gap: 12px;
+  }
+  .eye .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+  h1 {
+    font-family: var(--font-serif); font-weight: 500;
+    font-size: 56px; line-height: 1.08; letter-spacing: -0.015em;
+    margin: 14px 0 42px; max-width: 22ch; color: var(--stone);
+  }
+  h1 em { font-style: italic; color: var(--terra); font-weight: 500; }
+  .body { display: grid; grid-template-columns: 1fr 1fr; gap: 42px 56px; }
+  .item { padding: 2px 0 0 20px; border-left: 2px solid var(--gold); }
+  .item .tag {
+    font-family: var(--font-sans); font-weight: 500;
+    font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--stone-soft); display: inline-flex; align-items: center; gap: 8px;
+    margin-bottom: 6px;
+    border: 0; padding: 0; background: transparent;
+  }
+  .item .tag .d { width: 6px; height: 6px; border-radius: 50%; background: var(--sage); }
+  .item.two .tag .d { background: var(--gold); }
+  .item.three .tag .d { background: var(--terra); }
+  .item.four .tag .d { background: var(--ok-falls); }
+  .item h3 {
+    font-family: var(--font-serif); font-weight: 500; font-size: 22px;
+    line-height: 1.2; margin: 0 0 4px; letter-spacing: -0.005em;
+  }
+  .item .ko {
+    font-family: 'Noto Serif KR', serif; font-weight: 500;
+    color: var(--stone-soft); font-size: 14px; margin: 0 0 8px;
+  }
+  .item p {
+    font-family: var(--font-sans); font-size: 14px; line-height: 1.55;
+    margin: 0; max-width: 44ch; color: var(--stone-soft);
+  }
+  .foot {
+    position: absolute; left: 104px; right: 104px; bottom: 40px;
+    display: flex; justify-content: space-between;
+    font-family: var(--font-mono); font-size: 12px;
+    letter-spacing: 0.06em; color: var(--stone-soft);
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="eye"><span class="dot"></span>Ministry Activities · 사역</div>
+    <h1>What happens under <em>this roof</em>.</h1>
+    <div class="body">
+      <div class="item one">
+        <span class="tag"><span class="d"></span>DTS</span>
+        <h3>Discipleship Training School</h3>
+        <p class="ko">제자훈련학교</p>
+        <p>A foundational program to deepen faith and prepare young people for the mission field.</p>
+      </div>
+      <div class="item two">
+        <span class="tag"><span class="d"></span>Schools</span>
+        <h3>Bible &amp; Leadership Schools</h3>
+        <p class="ko">성경학교 · 리더십 훈련</p>
+        <p>Equipping participants to study, interpret, and teach Scripture; training leaders in character and teamwork.</p>
+      </div>
+      <div class="item three">
+        <span class="tag"><span class="d"></span>One Korea</span>
+        <h3>Concert &amp; Retreats</h3>
+        <p class="ko">원 코리아 · 수련회</p>
+        <p>Raising awareness through music and arts; empowering hope for North Korean communities.</p>
+      </div>
+      <div class="item four">
+        <span class="tag"><span class="d"></span>Hosting</span>
+        <h3>Family Camps &amp; Hospitality</h3>
+        <p class="ko">가족 캠프 · 호스팅</p>
+        <p>Strengthening families in faith and calling; hosting outreach teams locally and globally.</p>
+      </div>
+    </div>
+    <div class="foot">
+      <span>YWAM Château · Vision Document</span>
+      <span>04 / 08</span>
+    </div>
+  </div>
+</body>
+</html>

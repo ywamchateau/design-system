@@ -1,0 +1,2541 @@
+<!DOCTYPE html><html lang="en"><head>
+
+
+
+
+
+
+
+
+<meta charset="utf-8">
+<title>YWAM Château — Design System Overview</title>
+<link rel="stylesheet" href="colors_and_type.css?v=20260427">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@400;500;600&amp;family=Noto+Serif+KR:wght@400;500&amp;family=Noto+Sans+KR:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"><style>
+/* Test fonts — Travel Poster family (under evaluation)                    */
+@font-face {
+  font-family: "Travel Poster Sans";
+  src: url("assets/fonts/travel-poster-sans.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Travel Poster Script";
+  src: url("assets/fonts/travel-poster-script.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+</style>
+<style>
+:root{
+  --cream:#F5F0E8; --blush:#E8D4C6; --gold:#C8922A; --gold-deep:#A8791E;
+  --sage:#8FA68E; --terra:#C57B57; --stone:#2B2620; --stone-soft:#4A4037;
+  --moss-deep:#426930;
+  --stone-100:#E8E4DC; --stone-200:#CEC7BD; --stone-300:#AFA79D; --stone-400:#8A8178; --stone-500:#6C6258; --stone-700:#3A322B;
+  --paper:#FFFFFF;
+  --ok-deep:#1A2A3A; --ok-falls:#3A6878; --ok-mist:#8EB8C2; --ok-reach:#B8D8E4; --ok-sky:#D4DEE2;
+  --border:rgba(43,38,32,0.14); --border-soft:rgba(43,38,32,0.07);
+  --font-serif:"Cormorant Garamond","EB Garamond",Georgia,serif;
+  --font-sans:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;
+  --font-serif-ko:"Noto Serif KR","Cormorant Garamond",serif;
+  --font-sans-ko:"Noto Sans KR","Inter",sans-serif;
+  --font-mono:"Inter",ui-monospace,Menlo,monospace;
+  --font-poster:"Travel Poster Sans","Cormorant Garamond",serif;
+  --font-script:"Travel Poster Script","Cormorant Garamond",cursive;
+  --radius-sm:6px; --radius-md:14px; --radius-lg:28px; --radius-pill:999px;
+}
+
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-sans);
+  color: var(--stone);
+  background: var(--cream);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img, svg, iframe { max-width: 100%; }
+
+/* ─── PAGE LAYOUT ─────────────────────────────────────────────── */
+.page { max-width: 1280px; margin: 0 auto; padding: 0 56px; box-sizing: border-box; }
+@media (max-width: 980px) { .page { padding: 0 36px; } }
+@media (max-width: 720px) { .page { padding: 0 24px; } }
+
+/* ─── COVER ─────────────────────────────────────────────────── */
+.cover {
+  position: relative;
+  padding: 120px 0 100px;
+  border-bottom: 1px solid var(--border);
+}
+.cover .stamp {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em;
+  color: var(--stone-soft); text-transform: uppercase;
+  display: flex; gap: 24px; margin-bottom: 56px;
+}
+.cover .stamp .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); align-self: center; }
+.cover h1 {
+  font-family: var(--font-serif); font-weight: 500;
+  font-size: clamp(56px, 9vw, 128px); line-height: 0.98;
+  letter-spacing: -0.022em; margin: 0 0 28px;
+}
+.cover h1 em { font-style: italic; color: var(--moss-deep); font-weight: 500; }
+.cover .ko {
+  font-family: var(--font-serif-ko); font-weight: 500;
+  font-size: 22px; color: var(--stone-soft); margin: 0 0 36px;
+  letter-spacing: -0.01em;
+}
+.cover .lede {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: 24px; line-height: 1.45; color: var(--stone-soft);
+  max-width: 36ch; margin: 0 0 64px;
+}
+.cover .lede-row {
+  display: block;
+  margin: 0 0 64px;
+}
+.cover .lede-row .lede { max-width: 44ch; margin: 0 0 20px; }
+.cover .lede-row .lede-b {
+  font-family: var(--font-serif-ko);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--stone-soft);
+  letter-spacing: -0.01em;
+  max-width: 44ch;
+  margin: 0;
+}
+@media (max-width: 900px) {
+  .cover .lede-row { grid-template-columns: 1fr; gap: 24px; }
+}
+.cover-meta {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+  border-top: 1px solid var(--border-soft); padding-top: 28px;
+}
+.cover-meta dt {
+  font-family: var(--font-sans); font-weight: 500;
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--stone-soft); margin-bottom: 8px;
+}
+.cover-meta dd {
+  font-family: var(--font-serif); font-size: 22px; font-weight: 500;
+  color: var(--stone); margin: 0; letter-spacing: -0.01em;
+}
+.cover-meta dd .ko {
+  display: block;
+  font-family: var(--font-serif-ko);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--stone-soft);
+  letter-spacing: 0;
+  margin: 6px 0 0;
+  line-height: 1.4;
+}
+@media (max-width: 720px) { .cover-meta { grid-template-columns: 1fr 1fr; gap: 20px; } }
+@media (max-width: 980px) and (min-width: 721px) { .cover-meta { grid-template-columns: repeat(2, 1fr); row-gap: 24px; } }
+
+/* ─── TOC ─────────────────────────────────────────────────────── */
+.toc {
+  max-width: 1280px; margin: 0 auto;
+  padding: 56px 56px; border-bottom: 1px solid var(--border);
+  display: grid; grid-template-columns: 200px 1fr; gap: 48px;
+  box-sizing: border-box;
+}
+.toc .label {
+  font-family: var(--font-sans); font-weight: 500;
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--stone-soft);
+}
+.toc ol {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 32px;
+  counter-reset: toc;
+}
+.toc li {
+  counter-increment: toc;
+  font-family: var(--font-serif); font-size: 22px;
+  border-top: 1px solid var(--border-soft);
+  padding: 12px 0;
+}
+.toc li a {
+  color: var(--stone); text-decoration: none;
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 12px; transition: color .2s;
+}
+.toc li a:hover { color: var(--moss-deep); }
+.toc li a::before {
+  content: counter(toc, decimal-leading-zero);
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--stone-soft); letter-spacing: 0.08em;
+  align-self: center; min-width: 28px;
+}
+.toc li a span { flex: 1; }
+@media (max-width: 980px) {
+  .toc { padding: 48px 36px; gap: 32px; }
+  .toc ol { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 720px) {
+  .toc { grid-template-columns: 1fr; gap: 16px; padding: 36px 24px; }
+  .toc ol { grid-template-columns: 1fr; }
+}
+
+/* ─── SECTION ─────────────────────────────────────────────────── */
+.section { padding: 96px 0; border-bottom: 1px solid var(--border); }
+
+/* Section header — left rail with monumental italic numeral,
+   right rail with h2 + sub. The numeral aligns to the cap height of
+   the h2 so the whole header reads from a single optical horizon.
+   Numeral scales fluidly; right column flexes; nothing overflows. */
+.section-head {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 56px;
+  margin-bottom: 64px;
+  align-items: start;
+}
+.section-num {
+  font-family: var(--font-sans); font-weight: 500; font-size: 11px; letter-spacing: 0.22em;
+  color: var(--stone-soft); text-transform: uppercase;
+  /* Pulled up so the numeral's optical baseline meets the h2 cap line */
+  padding-top: 18px;
+}
+.section-num strong {
+  display: block;
+  font-family: var(--font-serif); font-style: italic; font-weight: 300;
+  font-size: clamp(96px, 11vw, 168px);
+  line-height: 0.78;
+  letter-spacing: -0.04em;
+  color: var(--moss-deep);
+  margin-top: 8px;
+}
+.section-head > div:last-child { min-width: 0; }
+.section h2 {
+  font-family: var(--font-serif); font-weight: 500;
+  font-size: clamp(40px, 5.4vw, 84px);
+  line-height: 1.04;
+  letter-spacing: -0.022em;
+  margin: 0 0 20px;
+  text-wrap: pretty;
+}
+.section h2 em {
+  font-family: "Travel Poster Sans", var(--font-serif);
+  font-style: normal;
+  font-weight: 400;
+  color: var(--moss-deep);
+}
+.section .section-sub {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: clamp(17px, 1.5vw, 21px);
+  line-height: 1.45;
+  color: var(--stone-soft);
+  max-width: 56ch;
+  margin: 0;
+}
+
+/* Mid-breakpoint — tighten rail, scale numeral down */
+@media (max-width: 1024px) {
+  .section-head { grid-template-columns: 160px 1fr; gap: 36px; margin-bottom: 48px; }
+  .section-num { padding-top: 10px; }
+  .section-num strong { font-size: clamp(72px, 9vw, 112px); }
+}
+
+/* Stack — numeral becomes a stamp above the title */
+@media (max-width: 720px) {
+  .section-head { grid-template-columns: 1fr; gap: 14px; margin-bottom: 36px; }
+  .section-num { padding-top: 0; display: flex; align-items: baseline; gap: 18px; }
+  .section-num strong { font-size: 88px; margin-top: 0; }
+}
+
+.subsection { margin-top: 56px; }
+.subsection-label {
+  font-family: var(--font-sans); font-weight: 500;
+  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--stone-soft); margin: 0 0 18px;
+  padding-bottom: 12px; border-bottom: 1px solid var(--border-soft);
+  display: flex; align-items: baseline; justify-content: space-between;
+}
+.subsection-label .hint { letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; font-style: normal; font-family: var(--font-sans); font-size: 11px; color: var(--stone-400); }
+
+/* ─── BRAND IDENTITY ──────────────────────────────────────────── */
+/* Cards: the asset is the protagonist. The footer sits on the same
+   ground as the asset — no white strip, no border between. The label
+   reads as a quiet stamp on the surface. */
+.id-card {
+  border-radius: var(--radius-md); overflow: hidden;
+  border: 1px solid var(--border-soft);
+  display: flex; flex-direction: column;
+  position: relative;
+}
+.id-frame {
+  flex: 1;
+  display: grid; place-items: center;
+  padding: 56px 48px 32px;
+}
+.id-frame img { max-width: 100%; max-height: 100%; display: block; }
+.id-meta {
+  padding: 0 22px 18px;
+  display: flex; justify-content: space-between; align-items: baseline; gap: 14px;
+  font-size: 12px;
+}
+.id-meta .name {
+  font-family: var(--font-sans); font-weight: 500; font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+}
+.id-meta .tag {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.04em;
+}
+/* On-tone footer text colors */
+.id-card.on-cream .id-meta .name,
+.id-card.on-paper .id-meta .name,
+.id-card.on-blush .id-meta .name { color: var(--stone); }
+.id-card.on-cream .id-meta .tag,
+.id-card.on-paper .id-meta .tag,
+.id-card.on-blush .id-meta .tag { color: var(--stone-soft); }
+.id-card.on-stone .id-meta .name,
+.id-card.on-moss  .id-meta .name { color: var(--cream); }
+.id-card.on-stone .id-meta .tag,
+.id-card.on-moss  .id-meta .tag { color: rgba(245, 240, 232, 0.62); }
+
+.bg-cream { background: var(--cream); }
+.bg-paper { background: var(--paper); }
+.bg-stone { background: var(--stone); }
+.bg-moss  { background: var(--moss-deep); }
+.bg-blush { background: var(--blush); }
+/* Photographic stand-ins so designers can see how the mark behaves on imagery */
+.bg-photo-warm {
+  background:
+    radial-gradient(120% 80% at 30% 20%, rgba(245,240,232,0.18), transparent 60%),
+    linear-gradient(135deg, #6B5840 0%, #463829 50%, #2B2620 100%);
+}
+.bg-photo-moss {
+  background:
+    radial-gradient(120% 80% at 70% 30%, rgba(143,166,142,0.32), transparent 60%),
+    linear-gradient(160deg, #4F6D43 0%, #2F4D22 60%, #1F3417 100%);
+}
+
+/* Two big primary lockups */
+.identity-grid {
+  display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; margin-top: 24px;
+}
+.identity-grid .id-frame { aspect-ratio: 16 / 10; padding: 80px 64px 36px; }
+
+/* Four-up colorway row */
+.logo-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 18px;
+}
+.logo-row .id-frame { padding: 36px 24px 18px; aspect-ratio: 1 / 1; }
+.logo-row .id-frame img { max-height: 90px; }
+.logo-row .id-meta { padding: 0 16px 14px; }
+
+/* Application strip — six real-world contexts across cream, stone, moss, blush, photography, gold */
+.application-row {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px;
+}
+.application-row .id-card .id-frame { padding: 0; aspect-ratio: 4 / 5; align-items: stretch; justify-items: stretch; }
+.application-row .id-meta { padding: 14px 18px 16px; }
+@media (max-width: 980px) { .application-row { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .application-row { grid-template-columns: 1fr; } }
+
+/* Sizing strip — 4 logo variants × 5 sizes each, stacked vertically */
+.sizing-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 18px;
+}
+@media (max-width: 1100px) { .sizing-row { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px)  { .sizing-row { grid-template-columns: 1fr; } }
+.size-card {
+  border-radius: var(--radius-md); overflow: hidden;
+  border: 1px solid var(--border-soft);
+  display: flex; flex-direction: column;
+  background: var(--cream);
+  min-height: 540px;
+}
+.size-card.on-stone { background: var(--stone); }
+.size-card.on-moss  { background: var(--moss-deep); }
+.size-card .stack {
+  flex: 1; padding: 40px 24px 32px;
+  display: flex; flex-direction: column; align-items: stretch; gap: 32px;
+}
+/* Distribute rows so top + bottom whitespace are equal regardless of card height */
+.size-card .stack--fill { justify-content: space-between; gap: 28px; }
+
+.size-card .row {
+  position: relative;
+  display: grid; grid-template-columns: 1fr; place-items: center;
+  width: 100%; min-height: 24px;
+}
+.size-card .row img { display: block; grid-row: 1; grid-column: 1; justify-self: center; }
+.size-card .row .px {
+  grid-row: 1; grid-column: 1;
+  justify-self: end; align-self: center;
+  font-family: var(--font-sans); font-weight: 500; font-size: 9.5px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--stone-soft); pointer-events: none;
+}
+
+/* Horizontal-wordmark variant — left-aligned logos with px tag stacked below.
+   Each row is its own column, and px sits beneath the lockup it labels. */
+.size-card--horiz .row {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
+  min-height: 0;
+}
+.size-card--horiz .row img { justify-self: flex-start; }
+.size-card--horiz .row .px {
+  justify-self: flex-start; align-self: flex-start;
+  position: static;
+}
+.size-card.on-stone .row .px,
+.size-card.on-moss  .row .px { color: rgba(245,240,232,0.6); }
+.size-card .foot {
+  border-top: 1px solid var(--border-soft);
+  padding: 22px 18px 18px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.size-card.on-stone .foot,
+.size-card.on-moss  .foot { border-top-color: rgba(245,240,232,0.18); }
+.size-card .foot .name {
+  font-family: var(--font-sans); font-weight: 500; font-size: 11px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--stone-soft);
+}
+.size-card .foot .spec {
+  font-family: var(--font-sans); font-weight: 400; font-size: 11px;
+  letter-spacing: 0.04em; color: var(--stone-400);
+}
+.size-card.on-stone .foot .name,
+.size-card.on-moss  .foot .name { color: var(--cream); }
+.size-card.on-stone .foot .spec,
+.size-card.on-moss  .foot .spec { color: rgba(245,240,232,0.62); }
+
+/* Clearance + minimum size */
+.clearance-row {
+  display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; margin-top: 18px;
+}
+.clearance-frame {
+  position: relative; padding: 64px;
+}
+.clearance-frame .guides {
+  position: absolute; inset: 28px;
+  border: 1px dashed rgba(43,38,32,0.20);
+  pointer-events: none;
+}
+.clearance-frame .guide-mark {
+  position: absolute;
+  font-family: var(--font-mono); font-size: 9.5px;
+  letter-spacing: 0.08em; color: var(--stone-soft);
+}
+.clearance-frame .guide-mark.tl { top: 12px; left: 14px; }
+.clearance-frame .guide-mark.br { bottom: 12px; right: 14px; }
+
+/* Don't grid */
+.donts {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 18px;
+}
+@media (max-width: 980px) { .donts { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .donts { grid-template-columns: 1fr; } }
+.dont-card {
+  border-radius: var(--radius-md); overflow: hidden;
+  border: 1px solid var(--border-soft);
+  position: relative;
+}
+.dont-frame {
+  aspect-ratio: 4 / 3;
+  background: var(--cream);
+  display: grid; place-items: center;
+  padding: 36px;
+  position: relative;
+}
+.dont-frame::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent calc(50% - 1px), rgba(197,123,87,0.55) 50%, transparent calc(50% + 1px));
+  pointer-events: none;
+}
+.dont-frame img { max-width: 65%; max-height: 70%; }
+.dont-cap {
+  padding: 12px 16px 14px;
+  font-family: var(--font-sans); font-weight: 500; font-size: 11px;
+  color: var(--stone); letter-spacing: 0;
+  background: var(--paper);
+  border-top: 1px solid var(--border-soft);
+}
+.dont-cap em { font-style: italic; color: var(--terra); }
+
+/* ===== Brand values ===== */
+
+.values { margin-top: 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.value {
+  background: var(--paper);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 28px;
+}
+.value .num {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em;
+  color: var(--moss-deep); display: flex; align-items: center; gap: 10px;
+  margin-bottom: 16px;
+}
+.value .num::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--moss-deep); }
+.value h4 {
+  font-family: var(--font-serif); font-weight: 500;
+  font-size: 26px; line-height: 1.15; margin: 0 0 8px;
+  letter-spacing: -0.01em;
+}
+.value h4 em { font-style: italic; color: var(--moss-deep); }
+.value .ko {
+  font-family: var(--font-serif-ko); font-weight: 500;
+  color: var(--stone-soft); font-size: 13.5px; margin: 0 0 14px;
+}
+.value p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--stone-soft); }
+@media (max-width: 980px) { .values { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 720px) { .values, .logo-row, .identity-grid { grid-template-columns: 1fr; } }
+
+/* ─── COLOR ───────────────────────────────────────────────────── */
+.color-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-top: 20px; }
+.swatch {
+  border-radius: var(--radius-sm); overflow: hidden;
+  border: 1px solid var(--border-soft);
+  display: flex; flex-direction: column; aspect-ratio: 3 / 4;
+  position: relative;
+}
+.swatch .chip { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px 16px 16px; color: var(--stone); }
+.swatch .info {
+  font-family: var(--font-mono); font-size: 10.5px;
+  color: inherit; opacity: 0.78; letter-spacing: 0.04em;
+  margin-top: 4px;
+}
+.swatch .info b { display: block; font-family: var(--font-sans); font-size: 13px; color: inherit; opacity: 1; font-weight: 700; letter-spacing: 0; margin-bottom: 4px; }
+.swatch.on-dark .chip { color: var(--cream); }
+.swatch.lg { aspect-ratio: 4 / 5; }
+@media (max-width: 720px) { .color-row { grid-template-columns: repeat(3, 1fr); } }
+
+/* Color application — harmony layouts */
+.harmony { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 20px; }
+@media (max-width: 980px) { .harmony { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 720px) { .harmony { grid-template-columns: 1fr; } }
+.harmony-card {
+  border: 1px solid var(--border-soft); border-radius: var(--radius-md);
+  overflow: hidden; background: transparent;
+  display: flex; flex-direction: column;
+}
+.harmony-card .preview { aspect-ratio: 4 / 3; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; }
+.harmony-card .preview .eye { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; }
+.harmony-card .preview .h { font-family: var(--font-serif); font-weight: 500; font-size: 28px; line-height: 1.1; letter-spacing: -0.012em; margin: 0; }
+.harmony-card .preview .h em { font-style: normal; font-weight: 400; font-family: "Travel Poster Sans", var(--font-serif); }
+/* Bilingual title pair — English drives the width; Korean wraps to match */
+.harmony-card .preview .title-pair {
+  display: inline-flex; flex-direction: column; gap: 2px;
+  align-self: flex-start;       /* shrink-wrap to the English line's natural width */
+  max-width: 100%;
+}
+.harmony-card .preview .title-pair .h { max-width: none; }
+.harmony-card .preview .h-ko {
+  font-family: var(--font-serif-ko); font-weight: 500;
+  font-size: 18px; line-height: 1.15; letter-spacing: -0.01em;
+  margin: 0; opacity: 0.85;
+  width: 100%;                  /* fill the column the English headline established */
+  max-width: none;
+  text-wrap: balance;
+}
+.harmony-card .preview .meta { font-family: var(--font-sans); font-size: 12px; opacity: 0.78; }
+.harmony-card .preview .pill { display: inline-flex; padding: 5px 11px; border-radius: 999px; font-family: var(--font-sans); font-weight: 500; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; align-self: flex-start; }
+.harmony-card .legend { padding: 14px 18px; border-top: 1px solid var(--border-soft); background: var(--cream); font-family: var(--font-mono); font-size: 10.5px; color: var(--stone-soft); letter-spacing: 0.04em; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.harmony-card .legend b { font-family: var(--font-sans); font-size: 12px; color: var(--stone); font-weight: 600; letter-spacing: 0; margin-right: 6px; }
+.harmony-card .legend .swatch-dot { width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgba(43,38,32,0.18); display: inline-block; }
+
+/* ─── TYPE ────────────────────────────────────────────────────── */
+.type-spec {
+  display: grid; grid-template-columns: 220px 1fr;
+  gap: 32px; padding: 24px 0;
+  border-bottom: 1px solid var(--border-soft);
+  align-items: baseline;
+}
+.type-spec:last-child { border-bottom: none; }
+.type-spec .meta { font-family: var(--font-mono); font-size: 11px; color: var(--stone-soft); letter-spacing: 0.04em; }
+.type-spec .meta b { display: block; font-family: var(--font-sans); font-size: 11px; color: var(--stone); font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 6px; }
+.type-spec .meta span { display: block; line-height: 1.7; }
+.type-spec .sample { color: var(--stone); }
+
+.t-display {
+  font-family: var(--font-serif); font-weight: 500; font-size: 88px;
+  line-height: 0.98; letter-spacing: -0.022em;
+}
+.t-display em { font-style: italic; color: var(--moss-deep); font-weight: 500; }
+.t-h1 { font-family: var(--font-serif); font-weight: 500; font-size: 56px; line-height: 1.05; letter-spacing: -0.018em; }
+.t-h2 { font-family: var(--font-serif); font-weight: 500; font-size: 40px; line-height: 1.1; letter-spacing: -0.014em; }
+.t-h3 { font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: 28px; line-height: 1.2; color: var(--moss-deep); }
+.t-lede { font-family: var(--font-serif); font-style: italic; font-size: 22px; line-height: 1.45; color: var(--stone-soft); max-width: 50ch; }
+.t-body { font-family: var(--font-sans); font-size: 16px; line-height: 1.65; max-width: 56ch; }
+.t-meta { font-family: var(--font-sans); font-weight: 500; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--stone-soft); }
+.t-mono { font-family: var(--font-mono); font-size: 12.5px; color: var(--stone-soft); letter-spacing: 0.02em; }
+.t-ko-serif { font-family: var(--font-serif-ko); font-weight: 500; font-size: 32px; color: var(--stone); }
+.t-ko-sans { font-family: var(--font-sans-ko); font-weight: 500; font-size: 18px; color: var(--stone-soft); }
+
+/* Test fonts — Travel Poster family (Headline 2 + detail script) */
+.t-poster {
+  font-family: var(--font-poster);
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 1.05;
+  letter-spacing: 0.005em;
+  color: var(--stone);
+  text-transform: uppercase;
+}
+.t-script {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: 44px;
+  line-height: 1.1;
+  color: var(--terra);
+}
+
+/* ─── SPACING ─────────────────────────────────────────────────── */
+.scale {
+  display: grid; grid-template-columns: 80px 80px 1fr; gap: 24px;
+  padding: 14px 0; align-items: center;
+  border-bottom: 1px solid var(--border-soft);
+  font-family: var(--font-mono); font-size: 12px; color: var(--stone-soft);
+}
+.scale b { font-family: var(--font-sans); font-size: 12px; color: var(--stone); font-weight: 500; }
+.scale .bar { background: var(--moss-deep); height: 14px; border-radius: 2px; }
+
+.radii { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 18px; }
+
+/* Spacing + Radii two-up layout — radii sit beside the scale */
+.spacing-radii {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 56px;
+  align-items: start;
+}
+.spacing-radii .spacing-col, .spacing-radii .radii-col { min-width: 0; }
+.spacing-radii .subsection-label { margin-top: 0; }
+.radii--inline { grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.radii--inline .demo { aspect-ratio: 1 / 1; }
+.radii--inline .meta { margin-top: 8px; }
+@media (max-width: 980px) {
+  .spacing-radii { grid-template-columns: 1fr; gap: 48px; }
+  .radii--inline { grid-template-columns: repeat(5, 1fr); }
+}
+@media (max-width: 600px) {
+  .radii--inline { grid-template-columns: repeat(3, 1fr); }
+}
+.radii .demo {
+  background: var(--paper); border: 1px solid var(--border-soft);
+  aspect-ratio: 1 / 1; display: grid; place-items: center;
+}
+.radii .demo .box { width: 70%; height: 70%; background: var(--blush); border: 1px solid rgba(43,38,32,0.18); }
+.radii .meta { text-align: center; margin-top: 10px; font-family: var(--font-mono); font-size: 11px; color: var(--stone-soft); }
+.radii .meta b { display: block; font-family: var(--font-sans); font-size: 12px; color: var(--stone); font-weight: 500; letter-spacing: 0.04em; }
+
+.shadows { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 18px; }
+.shadow-card {
+  background: var(--paper); border-radius: var(--radius-md);
+  padding: 32px; aspect-ratio: 4 / 3;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.shadow-card.sm { box-shadow: 0 1px 2px rgba(43,38,32,0.06), 0 1px 1px rgba(43,38,32,0.04); }
+.shadow-card.md { box-shadow: 0 14px 40px -12px rgba(43,38,32,0.25); }
+.shadow-card.lg { box-shadow: 0 24px 60px -30px rgba(43,38,32,0.25); }
+.shadow-card b { font-family: var(--font-sans); font-weight: 500; font-size: 13px; }
+.shadow-card span { font-family: var(--font-mono); font-size: 11px; color: var(--stone-soft); margin-top: 4px; display: block; }
+
+/* Inline shadows — when nested in the right column under Radii */
+.shadows--inline { grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+.shadows--inline .shadow-card { padding: 18px; aspect-ratio: 1 / 1; }
+.shadows--inline .shadow-card b { font-size: 12px; }
+.shadows--inline .shadow-card span { font-size: 10px; }
+@media (max-width: 600px) {
+  .shadows--inline { grid-template-columns: 1fr; }
+  .shadows--inline .shadow-card { aspect-ratio: 4 / 1.4; padding: 16px 20px; }
+}
+
+/* ─── COMPONENTS ──────────────────────────────────────────────── */
+.comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 24px; }
+@media (max-width: 720px) { .comp-grid { grid-template-columns: 1fr; } }
+.comp {
+  border: 1px solid var(--border-soft); border-radius: var(--radius-md);
+  background: var(--paper); overflow: hidden;
+}
+.comp-head {
+  padding: 16px 22px; border-bottom: 1px solid var(--border-soft);
+  display: flex; justify-content: space-between; align-items: baseline;
+}
+.comp-head b { font-family: var(--font-sans); font-weight: 500; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--stone-soft); }
+.comp-head span { font-family: var(--font-sans); font-weight: 400; font-size: 11px; color: var(--stone-400); letter-spacing: 0.08em; text-transform: uppercase; }
+.comp-body { padding: 28px; min-height: 140px; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; justify-content: center; background: var(--cream); }
+
+/* Components section gets its own warm-stone surface so the
+   cream component cards read as objects on a table, not on the page. */
+.section--components { background: linear-gradient(180deg, var(--stone-100) 0%, #DDD6C9 100%); border-bottom-color: rgba(43,38,32,0.12); }
+.section--components .comp { background: transparent; border-color: rgba(43,38,32,0.14); box-shadow: none; }
+.section--components .comp-head { border-bottom-color: rgba(43,38,32,0.12); background: transparent; }
+.section--components .comp-body { background: transparent; }
+.section--components .comp-foot { background: transparent; border-top-color: rgba(43,38,32,0.12); }
+.section--components .section-head .section-sub { color: var(--stone-700); }
+
+/* button */
+.btn {
+  font-family: var(--font-sans); font-weight: 500; font-size: 12px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 14px 24px; border: none; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 12px;
+  text-decoration: none;
+}
+.btn-primary { background: var(--moss-deep); color: var(--cream); }
+.btn-primary:hover { background: #2F4D22; }
+.btn-secondary { background: transparent; color: var(--stone); border: 1px solid var(--stone); padding: 13px 23px; }
+.btn-secondary:hover { background: var(--stone); color: var(--cream); }
+.btn-ghost { background: transparent; color: var(--moss-deep); padding: 8px 0; }
+.btn-ghost::after { content: " ›"; }
+
+/* tag */
+.tag {
+  font-family: var(--font-sans); font-weight: 500; font-size: 10.5px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 6px 12px; border-radius: var(--radius-pill);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.tag::before { content: ""; width: 5px; height: 5px; border-radius: 50%; }
+.tag.dts { background: rgba(66,105,48,0.12); color: var(--moss-deep); }
+.tag.dts::before { background: var(--moss-deep); }
+.tag.korea { background: rgba(58,104,120,0.12); color: var(--ok-falls); }
+.tag.korea::before { background: var(--ok-falls); }
+.tag.swiss { background: rgba(200,146,42,0.14); color: var(--gold-deep); }
+.tag.swiss::before { background: var(--gold-deep); }
+.tag.intercession { background: rgba(197,123,87,0.14); color: var(--terra); }
+.tag.intercession::before { background: var(--terra); }
+
+/* form */
+.field { width: 100%; max-width: 320px; }
+.field label { display: block; font-family: var(--font-sans); font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--stone-soft); margin-bottom: 8px; }
+.field input, .field textarea {
+  width: 100%; box-sizing: border-box;
+  padding: 14px 16px; background: var(--paper);
+  border: 1px solid var(--border); border-radius: 0;
+  font-family: var(--font-sans); font-size: 14.5px; color: var(--stone);
+  outline: none; transition: border-color .2s;
+}
+.field input:focus, .field textarea:focus { border-color: var(--moss-deep); }
+
+/* card */
+.demo-card {
+  background: var(--paper); width: 100%; max-width: 360px;
+  border: 1px solid var(--border-soft); border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.demo-card .img { aspect-ratio: 4 / 3; background: linear-gradient(135deg, var(--sage), var(--moss-deep)); display: grid; place-items: center; color: rgba(255,255,255,0.4); font-family: var(--font-serif); font-style: italic; font-size: 14px; }
+.demo-card .body { padding: 22px; }
+.demo-card .body .eye { font-family: var(--font-sans); font-weight: 500; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--stone-soft); margin-bottom: 8px; }
+.demo-card .body h5 { font-family: var(--font-serif); font-weight: 500; font-size: 22px; margin: 0 0 8px; line-height: 1.15; }
+.demo-card .body h5 em { font-style: italic; color: var(--moss-deep); }
+.demo-card .body p { margin: 0; font-size: 13.5px; line-height: 1.55; color: var(--stone-soft); }
+
+/* quote */
+.demo-quote { font-family: var(--font-serif); font-style: italic; font-size: 28px; line-height: 1.3; color: var(--stone); max-width: 24ch; margin: 0; }
+.demo-quote::before { content: "“"; font-style: normal; color: var(--moss-deep); font-size: 1.4em; line-height: 0; vertical-align: -0.1em; margin-right: 0.05em; }
+.demo-quote-attr { font-family: var(--font-sans); font-weight: 500; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--stone-soft); margin-top: 16px; }
+
+/* ─── ICONS ───────────────────────────────────────────────────── */
+.icon-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 18px 14px; margin-top: 18px; }
+@media (max-width: 980px) { .icon-grid { grid-template-columns: repeat(6, 1fr); } }
+@media (max-width: 720px) { .icon-grid { grid-template-columns: repeat(4, 1fr); } }
+.icon-cell {
+  background: transparent;
+  aspect-ratio: 1 / 1;
+  display: grid; place-items: center; color: var(--stone);
+  position: relative;
+}
+/* the wirebox — a thin guide square ~62% of the cell, no fill */
+.icon-cell::before {
+  content: ""; position: absolute;
+  top: 19%; left: 19%; right: 19%; bottom: 19%;
+  border: 1px dashed rgba(43,38,32,0.22);
+  border-radius: 3px;
+  pointer-events: none;
+}
+.icon-cell svg { width: 28px; height: 28px; stroke: currentColor; fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; position: relative; z-index: 1; }
+.icon-cap { font-family: var(--font-mono); font-size: 10px; color: var(--stone-soft); text-align: center; margin-top: 4px; letter-spacing: 0.04em; }
+
+/* Icon application — color contexts */
+.icon-application {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+  margin-top: 18px;
+}
+@media (max-width: 980px) { .icon-application { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .icon-application { grid-template-columns: 1fr; } }
+.icon-app {
+  border-radius: var(--radius-md); padding: 28px 22px 18px;
+  display: flex; flex-direction: column; gap: 14px; align-items: flex-start;
+  border: 1px solid var(--border-soft);
+  min-height: 168px;
+}
+.icon-app .row { display: flex; gap: 14px; align-items: center; }
+.icon-app svg { width: 26px; height: 26px; stroke: currentColor; fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.icon-app .lbl { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.78; }
+.icon-app .name { font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: 22px; letter-spacing: -0.005em; line-height: 1.1; margin-top: auto; }
+.icon-app.on-cream { background: var(--cream); color: var(--stone); }
+.icon-app.on-paper { background: var(--paper); color: var(--stone); }
+.icon-app.on-moss { background: var(--moss-deep); color: var(--cream); border-color: transparent; }
+.icon-app.on-stone { background: var(--stone); color: var(--cream); border-color: transparent; }
+.icon-app.accent-gold { color: var(--gold); }
+.icon-app.accent-terra { color: var(--terra); }
+.icon-app .name { color: inherit; }
+
+/* ─── FRAMES (slides + UI kit previews) ───────────────────────── */
+.frame-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 24px; }
+@media (max-width: 980px) { .frame-row { grid-template-columns: 1fr; } }
+.frame-card {
+  background: var(--paper);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.frame-thumb {
+  aspect-ratio: 16 / 9; background: var(--stone-100);
+  position: relative; overflow: hidden;
+}
+.frame-thumb iframe {
+  position: absolute;
+  width: 1280px; height: 720px;
+  transform-origin: top left;
+  border: none; pointer-events: none;
+  top: 0; left: 0;
+  /* small card: 570px wide / 1280 = 0.4453 */
+  transform: scale(0.4453);
+}
+@media (max-width: 980px) {
+  /* one-column layout — full page width minus padding (~908px) */
+  .frame-thumb iframe { transform: scale(0.71); }
+}
+@media (max-width: 720px) {
+  /* viewport 720, padding 24 → ~672px */
+  .frame-thumb iframe { transform: scale(0.525); }
+}
+@media (max-width: 540px) {
+  /* viewport 540, padding 24 → ~492px */
+  .frame-thumb iframe { transform: scale(0.384); }
+}
+@media (max-width: 380px) {
+  /* viewport 380, padding 24 → ~332px */
+  .frame-thumb iframe { transform: scale(0.26); }
+}
+.frame-meta {
+  padding: 18px 22px;
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-top: 1px solid var(--border-soft);
+}
+.frame-meta b { font-family: var(--font-sans); font-weight: 500; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--stone-soft); }
+.frame-meta a { font-family: var(--font-sans); font-weight: 400; font-size: 11px; color: var(--stone-400); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
+.frame-meta a:hover { color: var(--moss-deep); }
+
+.uikit-card { grid-column: 1 / -1; }
+.uikit-card .frame-thumb { aspect-ratio: 16 / 9; }
+.uikit-card .frame-thumb iframe {
+  width: 1280px; height: 720px;
+  /* wide card spans full page = 1168px / 1280 = 0.9125 */
+  transform: scale(0.9125);
+}
+@media (max-width: 980px) {
+  .uikit-card .frame-thumb iframe,
+  .frame-row > .frame-card[style*="grid-column: 1 / -1"] .frame-thumb iframe {
+    transform: scale(0.71);
+  }
+}
+@media (max-width: 720px) {
+  .uikit-card .frame-thumb iframe,
+  .frame-row > .frame-card[style*="grid-column: 1 / -1"] .frame-thumb iframe {
+    transform: scale(0.525);
+  }
+}
+@media (max-width: 540px) {
+  .uikit-card .frame-thumb iframe,
+  .frame-row > .frame-card[style*="grid-column: 1 / -1"] .frame-thumb iframe {
+    transform: scale(0.384);
+  }
+}
+@media (max-width: 380px) {
+  .uikit-card .frame-thumb iframe,
+  .frame-row > .frame-card[style*="grid-column: 1 / -1"] .frame-thumb iframe {
+    transform: scale(0.26);
+  }
+}
+/* The closing-slide card also spans full width */
+.frame-row > .frame-card[style*="grid-column: 1 / -1"] .frame-thumb iframe {
+  width: 1280px; height: 720px;
+  transform: scale(0.9125);
+}
+
+/* ─── VOICE & TONE / WORKSHOP-GROUNDED ───────────────────────── */
+
+/* The north star — synthesized brand sentence */
+.northstar {
+  margin-top: 24px;
+  background: var(--moss-deep);
+  color: var(--cream);
+  border-radius: var(--radius-md);
+  padding: 72px 64px 64px;
+  position: relative;
+  overflow: hidden;
+}
+.northstar::before {
+  content: "";
+  position: absolute; top: 32px; left: 32px; right: 32px; bottom: 32px;
+  border: 1px solid rgba(245,240,232,0.18);
+  pointer-events: none;
+  border-radius: 4px;
+}
+.northstar .pin {
+  font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: rgba(245,240,232,0.72);
+  display: flex; align-items: center; gap: 12px; margin-bottom: 28px;
+  position: relative;
+}
+.northstar .pin::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+}
+.northstar blockquote {
+  font-family: var(--font-serif); font-weight: 500;
+  font-size: clamp(28px, 3.6vw, 44px); line-height: 1.18;
+  letter-spacing: -0.012em; margin: 0; color: var(--cream);
+  max-width: 28ch; position: relative;
+}
+.northstar blockquote em { font-style: italic; color: #E8C97D; font-weight: 500; }
+.northstar .ko-line {
+  font-family: var(--font-serif-ko); font-weight: 500;
+  font-size: 18px; line-height: 1.5; color: rgba(245,240,232,0.72);
+  margin: 28px 0 0; max-width: 36ch; position: relative;
+}
+.northstar .source {
+  font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+  color: rgba(245,240,232,0.55); text-transform: uppercase;
+  margin-top: 36px; padding-top: 18px;
+  border-top: 1px solid rgba(245,240,232,0.18);
+  display: flex; gap: 20px; flex-wrap: wrap;
+  position: relative;
+}
+@media (max-width: 720px) {
+  .northstar { padding: 48px 32px 40px; }
+  .northstar::before { inset: 18px; }
+}
+
+/* Why / How / What — three movement cards */
+.golden {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+  margin-top: 18px;
+}
+.golden .ring {
+  background: var(--paper);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 32px 30px 30px;
+  display: flex; flex-direction: column;
+  position: relative;
+}
+.golden .ring .stamp {
+  display: flex; align-items: baseline; gap: 12px; margin-bottom: 22px;
+  padding-bottom: 18px; border-bottom: 1px solid var(--border-soft);
+}
+.golden .ring .stamp .num {
+  font-family: var(--font-serif); font-style: italic; font-weight: 500;
+  font-size: 36px; line-height: 1; color: var(--moss-deep); letter-spacing: -0.01em;
+}
+.golden .ring .stamp .label {
+  font-family: var(--font-sans); font-weight: 500; font-size: 10.5px;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--stone-soft);
+}
+.golden .ring h4 {
+  font-family: var(--font-serif); font-weight: 500;
+  font-size: 24px; line-height: 1.2; margin: 0 0 14px;
+  letter-spacing: -0.01em; color: var(--stone);
+}
+.golden .ring h4 em { font-style: italic; color: var(--moss-deep); font-weight: 500; }
+.golden .ring p {
+  margin: 0; font-family: var(--font-sans); font-size: 14px;
+  line-height: 1.65; color: var(--stone-soft); flex: 1;
+}
+.golden .ring .bullets {
+  list-style: none; padding: 0; margin: 16px 0 0;
+}
+.golden .ring .bullets li {
+  font-family: var(--font-sans); font-size: 13.5px; line-height: 1.55;
+  color: var(--stone); padding: 8px 0 8px 18px;
+  border-top: 1px solid var(--border-soft); position: relative;
+}
+.golden .ring .bullets li::before {
+  content: ""; position: absolute; left: 0; top: 16px;
+  width: 8px; height: 1px; background: var(--moss-deep);
+}
+.golden .ring .bullets li:first-child { border-top: none; }
+@media (max-width: 980px) { .golden { grid-template-columns: 1fr; } }
+
+/* Four movements — the WHY in motion */
+.movements {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  margin-top: 18px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  background: var(--paper);
+  overflow: hidden;
+}
+.movement {
+  padding: 30px 26px;
+  border-right: 1px solid var(--border-soft);
+  display: flex; flex-direction: column; gap: 12px;
+}
+.movement:last-child { border-right: none; }
+.movement .arrow {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em;
+  color: var(--moss-deep); display: flex; align-items: center; gap: 8px;
+}
+.movement .arrow .dot { width: 5px; height: 5px; background: var(--moss-deep); border-radius: 50%; display: inline-block; }
+.movement h4 {
+  font-family: var(--font-serif); font-weight: 500; font-size: 22px;
+  line-height: 1.2; margin: 0; letter-spacing: -0.01em;
+}
+.movement h4 em { font-style: italic; color: var(--moss-deep); font-weight: 500; }
+.movement .ko {
+  font-family: var(--font-serif-ko); font-weight: 500;
+  font-size: 13px; color: var(--stone-soft); margin: 0;
+}
+.movement p { margin: 8px 0 0; font-size: 13px; line-height: 1.55; color: var(--stone-soft); }
+@media (max-width: 980px) {
+  .movements { grid-template-columns: 1fr 1fr; }
+  .movement { border-right: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft); }
+  .movement:nth-child(2n) { border-right: none; }
+  .movement:nth-last-child(-n+2) { border-bottom: none; }
+}
+@media (max-width: 540px) {
+  .movements { grid-template-columns: 1fr; }
+  .movement { border-right: none; border-bottom: 1px solid var(--border-soft); }
+  .movement:last-child { border-bottom: none; }
+}
+
+/* Voice principles — paired do/don't ledgers */
+.principles {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+  margin-top: 18px;
+}
+.principle {
+  background: var(--paper);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 28px 30px 30px;
+}
+.principle .num {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em;
+  color: var(--moss-deep); text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.principle h4 {
+  font-family: var(--font-serif); font-weight: 500; font-size: 26px;
+  line-height: 1.18; margin: 0 0 6px; letter-spacing: -0.01em;
+}
+.principle h4 em { font-style: italic; color: var(--moss-deep); font-weight: 500; }
+.principle .ko {
+  font-family: var(--font-serif-ko); font-weight: 500;
+  font-size: 13.5px; color: var(--stone-soft); margin: 0 0 18px;
+}
+.principle p {
+  margin: 0; font-size: 14px; line-height: 1.6; color: var(--stone-soft);
+}
+.principle .pair {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  margin-top: 22px; border-top: 1px solid var(--border-soft);
+}
+.principle .pair > div {
+  padding: 16px 18px 4px; border-right: 1px solid var(--border-soft);
+}
+.principle .pair > div:last-child { border-right: none; }
+.principle .pair .tag {
+  font-family: var(--font-sans); font-weight: 500; font-size: 10px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 8px; padding: 0;
+  background: none; border: 0; border-radius: 0;
+  margin-bottom: 10px;
+}
+.principle .pair .tag::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%;
+}
+.principle .pair .yes .tag { color: var(--moss-deep); }
+.principle .pair .yes .tag::before { background: var(--moss-deep); }
+.principle .pair .no  .tag { color: var(--terra); }
+.principle .pair .no  .tag::before { background: var(--terra); }
+.principle .pair .line {
+  font-family: var(--font-serif); font-style: italic; font-size: 17px;
+  line-height: 1.4; color: var(--stone); margin: 0 0 14px;
+}
+.principle .pair .no .line { color: var(--stone-400); text-decoration: line-through; text-decoration-color: rgba(197,123,87,0.55); text-decoration-thickness: 1px; }
+.principle .pair .line-ko {
+  font-family: var(--font-serif-ko); font-weight: 500;
+  font-size: 13px; line-height: 1.55; color: var(--stone-soft);
+  margin: -8px 0 14px; letter-spacing: 0;
+}
+.principle .pair .no .line-ko { color: var(--stone-400); }
+@media (max-width: 720px) {
+  .principles { grid-template-columns: 1fr; }
+}
+
+/* Tone dial — three sliders showing where we sit */
+.dials {
+  display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 18px;
+}
+.dial {
+  background: var(--paper);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 22px 28px 26px;
+  display: grid; grid-template-columns: 200px 1fr 200px; align-items: center;
+  gap: 28px;
+}
+.dial .end {
+  font-family: var(--font-serif); font-style: italic; font-size: 17px;
+  line-height: 1.3; color: var(--stone-400);
+}
+.dial .end.right { text-align: right; }
+.dial .end.lit { color: var(--stone); font-style: italic; }
+.dial .end.lit em { color: var(--moss-deep); font-style: italic; }
+.dial .track {
+  height: 6px; background: var(--stone-100); border-radius: 999px;
+  position: relative;
+}
+.dial .track .pin {
+  position: absolute; top: 50%; transform: translate(-50%, -50%);
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--moss-deep); border: 3px solid var(--cream);
+  box-shadow: 0 1px 3px rgba(43,38,32,0.18);
+}
+.dial .track .label {
+  position: absolute; bottom: -28px; transform: translateX(-50%);
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em;
+  color: var(--moss-deep); text-transform: uppercase; white-space: nowrap;
+}
+@media (max-width: 980px) {
+  .dial { grid-template-columns: 150px 1fr 150px; gap: 18px; }
+  .dial .end { font-size: 15px; }
+}
+@media (max-width: 720px) {
+  .dial { grid-template-columns: 1fr; gap: 10px; padding-bottom: 40px; }
+  .dial .end.right { text-align: left; }
+}
+
+/* Workshop pull-quotes — two languages, one room */
+.testimony {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+  margin-top: 18px;
+}
+.testimony figure {
+  margin: 0;
+  background: var(--cream);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 30px 32px 26px;
+}
+.testimony figure.dark { background: var(--stone); border-color: transparent; }
+.testimony figure.dark blockquote { color: var(--cream); }
+.testimony figure.dark blockquote::before { color: var(--gold); }
+.testimony figure.dark .ko { color: rgba(245,240,232,0.72); }
+.testimony figure.dark figcaption { color: rgba(245,240,232,0.55); border-top-color: rgba(245,240,232,0.18); }
+.testimony blockquote {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: 21px; line-height: 1.4; color: var(--stone);
+  margin: 0 0 14px; letter-spacing: -0.005em;
+}
+.testimony blockquote::before {
+  content: "\201C"; font-style: normal; color: var(--moss-deep);
+  font-size: 1.4em; line-height: 0; vertical-align: -0.15em;
+  margin-right: 0.04em;
+}
+.testimony .ko {
+  font-family: var(--font-serif-ko); font-weight: 500;
+  font-size: 14px; line-height: 1.55; color: var(--stone-soft);
+  margin: 0 0 18px;
+}
+.testimony figcaption {
+  font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.16em;
+  color: var(--stone-soft); text-transform: uppercase;
+  padding-top: 14px; border-top: 1px solid var(--border-soft);
+}
+@media (max-width: 720px) { .testimony { grid-template-columns: 1fr; } }
+
+/* ─── COMPONENT FOOT (specs / context strip) ─────────────────── */
+.comp-foot {
+  padding: 14px 22px; border-top: 1px solid var(--border-soft);
+  background: var(--paper);
+  font-family: var(--font-mono); font-size: 10.5px; color: var(--stone-soft);
+  letter-spacing: 0.04em; line-height: 1.55;
+}
+.comp-foot b {
+  font-family: var(--font-sans); color: var(--stone); font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase; font-size: 10px;
+  margin-right: 8px;
+}
+
+/* ─── HOMEPAGE-STYLE BUTTONS (.btn-h, mirrors marketing site) ── */
+.btn-h {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 26px; font-family: var(--font-sans);
+  font-size: 15px; font-weight: 500; letter-spacing: 0.01em;
+  border-radius: 999px; text-decoration: none;
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+  white-space: nowrap;
+}
+.btn-h-gold { background: var(--gold); color: var(--cream); box-shadow: 0 1px 0 rgba(43,38,32,0.06), 0 10px 24px -12px rgba(200,146,42,0.55); }
+.btn-h-gold:hover { background: var(--gold-deep); transform: translateY(-1px); }
+.btn-h-stone { background: var(--stone); color: var(--cream); }
+.btn-h-stone:hover { background: #1a1713; transform: translateY(-1px); }
+.btn-h-ghost { background: transparent; color: var(--stone); border: 1px solid rgba(43,38,32,0.25); }
+.btn-h-ghost:hover { border-color: var(--stone); background: rgba(43,38,32,0.04); }
+.btn-h-stack { flex-direction: column; align-items: center; gap: 4px; line-height: 1.1; }
+.btn-h-stack .btn-en { font-family: var(--font-sans); font-size: 15px; font-weight: 500; letter-spacing: 0.01em; }
+.btn-h-stack .btn-ko { font-family: var(--font-sans-ko); font-size: 14px; font-weight: 500; opacity: 0.78; }
+
+/* ─── PROGRAM CARD (mirrors homepage v2) ──────────────────────── */
+.program-card {
+  background: var(--cream);
+  border: 1px solid rgba(43,38,32,0.10);
+  border-radius: var(--radius-md);
+  padding: 32px 32px 28px;
+  width: 100%; max-width: 320px;
+  display: flex; flex-direction: column; gap: 18px;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.program-card:hover { transform: translateY(-3px); border-color: rgba(43,38,32,0.2); box-shadow: 0 24px 60px -30px rgba(43,38,32,0.25); }
+.program-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-sans); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--stone-soft);
+}
+.program-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+.program-card--dts .program-tag .dot { background: var(--gold); }
+.program-card--dbs .program-tag .dot { background: var(--sage); }
+.program-card--spl .program-tag .dot { background: var(--terra); }
+.program-card h5 {
+  font-family: var(--font-serif); font-weight: 500;
+  font-size: 26px; line-height: 1.15; letter-spacing: -0.01em;
+  margin: 0; color: var(--stone);
+}
+.program-card h5 .ko {
+  font-family: var(--font-serif-ko); font-style: normal;
+  font-size: 18px; margin-top: 6px; display: block; font-weight: 500;
+  color: var(--stone-soft);
+}
+.program-tagline {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: 16px; line-height: 1.4; color: var(--stone-soft);
+  margin: 0;
+}
+.program-tagline .ko {
+  font-family: var(--font-serif-ko); font-style: normal;
+  font-size: 14px; display: block; margin-top: 4px;
+  color: var(--stone-400);
+}
+.program-meta {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 8px;
+  font-family: var(--font-sans); font-size: 13px; color: var(--stone-soft);
+}
+.program-meta li { display: flex; align-items: flex-start; gap: 10px; }
+.program-meta li::before {
+  content: ""; display: inline-block;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--stone-300); margin-top: 7px; flex: none;
+}
+.program-cta {
+  margin-top: auto;
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-top: 1px solid rgba(43,38,32,0.08); padding-top: 16px;
+}
+.program-cta .text-link {
+  font-family: var(--font-sans); font-weight: 500; color: var(--stone); font-size: 14px;
+  border-bottom: 1px solid var(--gold); padding-bottom: 2px;
+  text-decoration: none; transition: color .2s ease;
+}
+.program-cta .text-link:hover { color: var(--gold-deep); }
+.program-cta .apply-mini { font-family: var(--font-sans); font-size: 12px; color: var(--stone-soft); text-align: right; }
+.program-cta .apply-mini .ko { font-family: var(--font-sans-ko); font-size: 11px; display: block; margin-top: 2px; }
+
+/* ─── FOOTER ──────────────────────────────────────────────────── */
+.foot {
+  padding: 64px 0 96px; display: grid; grid-template-columns: 200px 1fr; gap: 48px;
+}
+.foot .col-label { font-family: var(--font-sans); font-weight: 500; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--stone-soft); }
+.foot p { margin: 0 0 12px; font-size: 14px; line-height: 1.65; color: var(--stone-soft); max-width: 56ch; }
+.foot .colophon { font-family: var(--font-mono); font-size: 11px; color: var(--stone-400); letter-spacing: 0.04em; margin-top: 24px; }
+@media (max-width: 720px) { .foot { grid-template-columns: 1fr; gap: 16px; } }
+</style>
+<link id="gfont-Inter" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="tweaks.css">
+</head>
+<body style="cursor: crosshair;" data-cc-id="cc-1">
+
+<!-- ─── COVER ─── -->
+<section class="cover" data-screen-label="00 Cover" data-cc-id="cc-5">
+  <div class="page">
+    <div class="stamp">
+      <span style="font-family: Inter"><span class="dot" style="display: inline-block; margin-right: 8px;"></span>YWAM Château</span>
+      <span style="font-family: Inter">Design System v1.0</span>
+      <span style="font-family: Inter">April 2026</span>
+    </div>
+    <h1 style="font-family: &quot;Cormorant Garamond&quot;" data-cc-id="cc-2">A house with <em style="font-family: &quot;Travel Poster Sans&quot;; font-style: normal;" data-cc-id="cc-7">weight.</em></h1>
+    <p class="ko" style="font-size: clamp(40px, 6vw, 80px); margin: clamp(-32px, -3vw, -16px) 0px 41px; opacity: 0.5; font-weight: 500" data-cc-id="cc-2">함께 쌓는 집 — 무게가 있는 집.</p>
+    <div class="lede-row">
+      <p class="lede" style="font-weight: 500; text-align: left; margin: 0;" data-cc-id="cc-1">
+        The visual reference for everything we make — palette, type, components, and the language of the chateau. Warm but not casual. Rooted but not closed.
+      </p>
+      <p class="lede lede-b" style="font-weight: 500; text-align: left; margin: 0; letter-spacing: 0.3px; padding: 29px 0px 0px; opacity: 0.5">
+        매일 쓰는 사람들을 위한 자료 — 디자이너, 커뮤니케이터, 이 일을 이어갈 다음 스태프. 브랜드 매뉴얼이 아닌, 우리가 묘사하는 공간이 정직하게 지켜주는 참고서.
+      </p>
+    </div>
+    <dl class="cover-meta">
+      <div><dt style="font-weight: 700; opacity: 0.5">Voice</dt><dd>Plainspoken · bilingual<span class="ko">솔직한 어조 · 이중언어</span></dd></div>
+      <div><dt style="" data-cc-id="cc-3">Display type</dt><dd style="" data-cc-id="cc-3">Cormorant Garamond<span class="ko">디스플레이 서체</span></dd></div>
+      <div><dt>Primary mark</dt><dd>Moss · #426930<span class="ko">주요 마크 · 모스</span></dd></div>
+      <div><dt>Origin</dt><dd style="" data-cc-id="cc-4">Switzerland · Korea · France<span class="ko">스위스 · 한국 · 프랑스</span></dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ─── TOC ─── -->
+<nav class="toc" data-cc-id="cc-7">
+  <div class="page" style="display: contents;">
+    <span class="label" style="" data-cc-id="cc-10">Contents</span>
+    <ol>
+      <li data-cc-id="cc-8"><a href="#identity"><span style="font-weight: 400;" data-cc-id="cc-9">Brand identity</span></a></li>
+      <li><a href="#voice"><span>Voice &amp; tone</span></a></li>
+      <li><a href="#colors"><span style="" data-cc-id="cc-6">Colors</span></a></li>
+      <li><a href="#type"><span>Typography</span></a></li>
+      <li><a href="#spacing"><span>Spacing &amp; surface</span></a></li>
+      <li><a href="#components"><span>Components</span></a></li>
+      <li><a href="#icons"><span>Icons</span></a></li>
+      <li><a href="#slides"><span>Slide templates</span></a></li>
+      <li><a href="#uikit"><span>UI kit · marketing</span></a></li>
+    </ol>
+  </div>
+</nav>
+
+<!-- ─── 01 IDENTITY ─── -->
+<section class="section" id="identity" data-screen-label="01 Identity" data-cc-id="cc-5">
+  <div class="page">
+    <header class="section-head" data-cc-id="cc-6">
+      <div class="section-num" style="font-family: Inter;" data-cc-id="cc-5">Section <strong style="font-family: &quot;Cormorant Garamond&quot;;" data-cc-id="cc-4">01</strong></div>
+      <div>
+        <h2 style="font-size: clamp(40px, 6.5vw, 88px); font-family: &quot;Cormorant Garamond&quot;" data-cc-id="cc-1">Brand <em>identity.</em></h2>
+        <p class="section-sub">Two flame-like forms cradling a chateau, with a cross at the interior. The mark holds tradition and warmth at once.</p>
+      </div>
+    </header>
+
+    <div class="subsection">
+      <h3 class="subsection-label" style="gap: 0px; height: 22px"><span>Primary lockups</span><span class="hint">Moss is primary · the wordmark leads · the icon supports</span></h3>
+      <div class="identity-grid">
+        <div class="id-card on-cream bg-cream">
+          <div class="id-frame"><img src="assets/logos/logo-horizontal-green.svg" alt="Horizontal logo, green on cream"></div>
+          <div class="id-meta"><span class="name">Horizontal · primary</span><span class="tag">logo-horizontal-green.svg</span></div>
+        </div>
+        <div class="id-card on-cream bg-cream">
+          <div class="id-frame" style="padding: 64px 59px 64px 64px"><img src="assets/logos/logo-vertical-green.svg" alt="Vertical logo, green on cream" style="max-height: 280px; height: 250px; width: 250px; padding: 0px 0px 1px; object-fit: contain"></div>
+          <div class="id-meta"><span class="name">Vertical · stamp</span><span class="tag">logo-vertical-green.svg</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span>Wordmark vs. icon</span><span class="hint">Lead with the wordmark · the icon stands alone only when context already names us</span></h3>
+      <div class="logo-row">
+        <div class="id-card on-cream bg-cream">
+          <div class="id-frame"><img src="assets/logos/logo-horizontal-green.svg" alt="Horizontal wordmark" style="max-height: 56px;"></div>
+          <div class="id-meta"><span class="name">Horizontal wordmark</span><span class="tag">primary lockup</span></div>
+        </div>
+        <div class="id-card on-cream bg-cream">
+          <div class="id-frame"><img src="assets/logos/logo-vertical-green.svg" alt="Vertical wordmark" style="max-height: 130px;"></div>
+          <div class="id-meta"><span class="name">Vertical wordmark</span><span class="tag">stamp · plaque</span></div>
+        </div>
+        <div class="id-card on-cream bg-cream">
+          <div class="id-frame"><img src="assets/logos/icon-horizontal-green.svg" alt="Horizontal icon" style="max-height: 70px;"></div>
+          <div class="id-meta"><span class="name">Icon · horizontal</span><span class="tag">app · favicon</span></div>
+        </div>
+        <div class="id-card on-cream bg-cream">
+          <div class="id-frame"><img src="assets/logos/icon-vertical-green.svg" alt="Vertical icon" style="max-height: 90px;"></div>
+          <div class="id-meta"><span class="name">Icon · vertical</span><span class="tag">avatar · seal</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span>Colorway</span><span class="hint">Three weights, no others — no recoloring beyond these</span></h3>
+      <div class="logo-row">
+        <div class="id-card on-cream bg-cream">
+          <div class="id-frame"><img src="assets/logos/logo-vertical-green.svg" alt="Green vertical logo"></div>
+          <div class="id-meta"><span class="name">Green · primary</span><span class="tag">#426930</span></div>
+        </div>
+        <div class="id-card on-paper bg-paper">
+          <div class="id-frame"><img src="assets/logos/logo-vertical-black.svg" alt="Black vertical logo"></div>
+          <div class="id-meta"><span class="name">Black · editorial</span><span class="tag">#000000</span></div>
+        </div>
+        <div class="id-card on-stone bg-stone">
+          <div class="id-frame"><img src="assets/logos/logo-vertical-white.svg" alt="White vertical logo on stone"></div>
+          <div class="id-meta"><span class="name">White · on stone</span><span class="tag">#2B2620</span></div>
+        </div>
+        <div class="id-card on-moss bg-moss">
+          <div class="id-frame"><img src="assets/logos/logo-vertical-white.svg" alt="White vertical logo on moss"></div>
+          <div class="id-meta"><span class="name">White · on moss</span><span class="tag">#426930</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span>Applications</span><span class="hint">How the mark behaves across cream, stone, moss, and photography — same logo system, different surface</span></h3>
+      <div class="application-row">
+        <!-- Stationery · cream + moss -->
+        <div class="id-card on-cream bg-cream">
+          <div class="id-frame" style="padding: 40px;">
+            <div style="text-align: center;">
+              <img src="assets/logos/logo-vertical-green.svg" alt="Mark on letterhead" style="height: 90px; margin: 0 auto 28px; display: block;">
+              <div style="font-family: var(--font-serif); font-style: italic; font-size: 14px; color: var(--stone-soft); line-height: 1.5;">15 rue du Château<br>25210 — Le Russey<br>France</div>
+              <div style="height: 1px; background: var(--border-soft); margin: 24px 36px;"></div>
+              <div style="font-family: var(--font-mono); font-size: 9px; color: var(--stone-soft); letter-spacing: 0.18em; text-transform: uppercase;">letterhead · A4</div>
+            </div>
+          </div>
+          <div class="id-meta"><span class="name">Stationery</span><span class="tag">moss on cream</span></div>
+        </div>
+
+        <!-- Social card · stone + cream + sage -->
+        <div class="id-card on-stone bg-stone">
+          <div class="id-frame" style="padding: 0; align-items: stretch;">
+            <div style="display: flex; flex-direction: column; height: 100%; padding: 28px 32px; box-sizing: border-box; width: 100%;">
+              <img src="assets/logos/logo-horizontal-white.svg" alt="Mark on dark UI" style="height: 22px; width: auto; align-self: flex-start;">
+              <div style="flex: 1;"></div>
+              <div style="font-family: var(--font-serif); font-style: italic; color: var(--cream); font-size: 22px; line-height: 1.25; max-width: 18ch;">Apply for the <em style="color: var(--sage)">spring cohort.</em></div>
+              <div style="height: 1px; background: rgba(245,240,232,0.18); margin: 14px 0;"></div>
+              <div style="font-family: var(--font-mono); font-size: 9px; color: rgba(245,240,232,0.55); letter-spacing: 0.18em; text-transform: uppercase;">digital · 1080×1350</div>
+            </div>
+          </div>
+          <div class="id-meta"><span class="name">Social card</span><span class="tag">cream on stone</span></div>
+        </div>
+
+        <!-- Moss surface — newsletter band -->
+        <div class="id-card on-moss bg-moss">
+          <div class="id-frame" style="padding: 0; align-items: stretch;">
+            <div style="display: flex; flex-direction: column; height: 100%; padding: 28px 32px; box-sizing: border-box; width: 100%;">
+              <img src="assets/logos/logo-horizontal-white.svg" alt="Newsletter band on moss" style="height: 22px; width: auto; align-self: flex-start;">
+              <div style="flex: 1;"></div>
+              <div style="font-family: var(--font-serif); font-style: italic; color: var(--cream); font-size: 22px; line-height: 1.25; max-width: 16ch;">Drawing near, <em style="color: #E8C97D;">together.</em></div>
+              <div style="height: 1px; background: rgba(245,240,232,0.22); margin: 14px 0;"></div>
+              <div style="font-family: var(--font-mono); font-size: 9px; color: rgba(245,240,232,0.6); letter-spacing: 0.18em; text-transform: uppercase;">newsletter · monthly</div>
+            </div>
+          </div>
+          <div class="id-meta"><span class="name">Newsletter</span><span class="tag">cream on moss</span></div>
+        </div>
+
+        <!-- Blush + terra · warm photographic -->
+        <div class="id-card on-cream" style="background: var(--blush);">
+          <div class="id-frame" style="padding: 32px; background: var(--blush); align-items: stretch;">
+            <div style="display: flex; flex-direction: column; height: 100%; width: 100%;">
+              <img src="assets/logos/logo-horizontal-green.svg" alt="Story header on blush" style="height: 24px; width: auto; align-self: flex-start;">
+              <div style="flex: 1;"></div>
+              <div style="font-family: var(--font-serif); font-style: italic; color: var(--stone-700); font-size: 22px; line-height: 1.25; max-width: 16ch;">Six escapes, <em style="color: var(--terra);">one home.</em></div>
+              <div style="height: 1px; background: rgba(60,46,32,0.18); margin: 14px 0;"></div>
+              <div style="font-family: var(--font-mono); font-size: 9px; color: var(--stone-soft); letter-spacing: 0.18em; text-transform: uppercase;">story · feature</div>
+            </div>
+          </div>
+          <div class="id-meta"><span class="name">Story · warm</span><span class="tag">moss on blush · terra accent</span></div>
+        </div>
+
+        <!-- Photography · horizontal white over moss-photo -->
+        <div class="id-card on-moss bg-photo-moss">
+          <div class="id-frame" style="padding: 0; align-items: stretch;">
+            <div style="display: flex; align-items: flex-end; height: 100%; padding: 28px 32px; box-sizing: border-box; width: 100%;">
+              <img src="assets/logos/logo-horizontal-white.svg" alt="Mark on photographic background" style="height: 30px; width: auto;">
+            </div>
+          </div>
+          <div class="id-meta"><span class="name">On photography</span><span class="tag">horizontal white · bottom-left</span></div>
+        </div>
+
+        <!-- Gold accent · poster -->
+        <div class="id-card on-cream" style="background: var(--cream);">
+          <div class="id-frame" style="padding: 0; align-items: stretch;">
+            <div style="display: flex; flex-direction: column; height: 100%; width: 100%;">
+              <div style="background: var(--gold); padding: 12px 24px;">
+                <img src="assets/logos/logo-horizontal-white.svg" alt="Poster header on gold" style="height: 22px; width: auto;">
+              </div>
+              <div style="flex: 1; padding: 24px 28px; display: flex; flex-direction: column; justify-content: flex-end;">
+                <div style="font-family: var(--font-serif); font-style: italic; color: var(--stone); font-size: 22px; line-height: 1.25; max-width: 14ch;">A door, <em style="color: var(--gold-deep);">still open.</em></div>
+                <div style="height: 1px; background: rgba(60,46,32,0.18); margin: 12px 0;"></div>
+                <div style="font-family: var(--font-mono); font-size: 9px; color: var(--stone-soft); letter-spacing: 0.18em; text-transform: uppercase;">poster · A3</div>
+              </div>
+            </div>
+          </div>
+          <div class="id-meta"><span class="name">Poster</span><span class="tag">cream on gold band · stone body</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span>Sizing</span><span class="hint">Four lockups · five sizes each — top to bottom, large to minimum</span></h3>
+      <div class="sizing-row">
+        <div class="size-card size-card--horiz">
+          <div class="stack stack--fill">
+            <div class="row"><img src="assets/logos/logo-horizontal-green.svg" alt="" style="height: 56px;"><span class="px">56 px</span></div>
+            <div class="row"><img src="assets/logos/logo-horizontal-green.svg" alt="" style="height: 40px;"><span class="px">40 px</span></div>
+            <div class="row"><img src="assets/logos/logo-horizontal-green.svg" alt="" style="height: 28px;"><span class="px">28 px</span></div>
+            <div class="row"><img src="assets/logos/logo-horizontal-green.svg" alt="" style="height: 20px;"><span class="px">20 px · min</span></div>
+          </div>
+          <div class="foot">
+            <span class="name">Horizontal · wordmark</span>
+            <span class="spec">Hero, navigation, footers · 20 px minimum</span>
+          </div>
+        </div>
+
+        <div class="size-card">
+          <div class="stack stack--fill">
+            <div class="row"><img src="assets/logos/logo-vertical-green.svg" alt="" style="height: 120px;"><span class="px">120 px</span></div>
+            <div class="row"><img src="assets/logos/logo-vertical-green.svg" alt="" style="height: 88px;"><span class="px">88 px</span></div>
+            <div class="row"><img src="assets/logos/logo-vertical-green.svg" alt="" style="height: 64px;"><span class="px">64 px</span></div>
+            <div class="row"><img src="assets/logos/logo-vertical-green.svg" alt="" style="height: 44px;"><span class="px">44 px · min</span></div>
+          </div>
+          <div class="foot">
+            <span class="name">Vertical · wordmark</span>
+            <span class="spec">Stamps, plaques, posters · 44 px minimum</span>
+          </div>
+        </div>
+
+        <div class="size-card size-card--horiz">
+          <div class="stack stack--fill">
+            <div class="row"><img src="assets/logos/icon-horizontal-green.svg" alt="" style="height: 56px;"><span class="px">56 px</span></div>
+            <div class="row"><img src="assets/logos/icon-horizontal-green.svg" alt="" style="height: 40px;"><span class="px">40 px</span></div>
+            <div class="row"><img src="assets/logos/icon-horizontal-green.svg" alt="" style="height: 28px;"><span class="px">28 px</span></div>
+            <div class="row"><img src="assets/logos/icon-horizontal-green.svg" alt="" style="height: 20px;"><span class="px">20 px · min</span></div>
+          </div>
+          <div class="foot">
+            <span class="name">Horizontal · icon</span>
+            <span class="spec">Inline marks, list bullets · 20 px minimum</span>
+          </div>
+        </div>
+
+        <div class="size-card">
+          <div class="stack stack--fill">
+            <div class="row"><img src="assets/logos/icon-vertical-green.svg" alt="" style="height: 96px; width: 96px;"><span class="px">96 px</span></div>
+            <div class="row"><img src="assets/logos/icon-vertical-green.svg" alt="" style="height: 64px; width: 64px;"><span class="px">64 px</span></div>
+            <div class="row"><img src="assets/logos/icon-vertical-green.svg" alt="" style="height: 44px; width: 44px;"><span class="px">44 px</span></div>
+            <div class="row"><img src="assets/logos/icon-vertical-green.svg" alt="" style="height: 32px; width: 32px;"><span class="px">32 px · min</span></div>
+          </div>
+          <div class="foot">
+            <span class="name">Vertical · icon</span>
+            <span class="spec">Avatar, favicon, seal · 32 px minimum</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span>Clearance</span><span class="hint">Keep at least the height of the icon clear on every side</span></h3>
+      <div class="clearance-row">
+        <div class="id-card on-cream bg-cream">
+          <div class="id-frame clearance-frame">
+            <span class="guides"></span>
+            <span class="guide-mark tl">x</span>
+            <span class="guide-mark br">x = icon height</span>
+            <img src="assets/logos/logo-horizontal-green.svg" alt="Logo with clearance" style="max-width: 70%;">
+          </div>
+          <div class="id-meta"><span class="name">Clearance · ≥ x</span><span class="tag">all four sides</span></div>
+        </div>
+        <div class="id-card on-cream bg-cream">
+          <div class="id-frame clearance-frame">
+            <span class="guides"></span>
+            <span class="guide-mark tl">x</span>
+            <span class="guide-mark br">vertical</span>
+            <img src="assets/logos/logo-vertical-green.svg" alt="Vertical with clearance" style="max-height: 60%;">
+          </div>
+          <div class="id-meta"><span class="name">Vertical · ≥ x</span><span class="tag">stamp surfaces</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span>Don't</span><span class="hint">Four ways to break the mark — please don't</span></h3>
+      <div class="donts">
+        <div class="dont-card">
+          <div class="dont-frame"><img src="assets/logos/logo-horizontal-green.svg" alt="Stretched" style="transform: scaleX(1.4); transform-origin: center;"></div>
+          <div class="dont-cap">Don't <em>stretch.</em></div>
+        </div>
+        <div class="dont-card">
+          <div class="dont-frame" style="background: var(--gold);"><img src="assets/logos/logo-horizontal-green.svg" alt="On clashing color"></div>
+          <div class="dont-cap">Don't place on <em>clashing color.</em></div>
+        </div>
+        <div class="dont-card">
+          <div class="dont-frame"><img src="assets/logos/logo-horizontal-green.svg" alt="Drop shadow" style="filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.4));"></div>
+          <div class="dont-cap">Don't add <em>effects.</em></div>
+        </div>
+        <div class="dont-card">
+          <div class="dont-frame"><img src="assets/logos/logo-horizontal-white.svg" alt="White on light"></div>
+          <div class="dont-cap">Don't reverse on <em>light.</em></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span>What the system protects</span><span class="hint">Six commitments named in the workshop · every design decision answers to these</span></h3>
+      <div class="values">
+        <div class="value">
+          <div class="num">01 · Rootedness</div>
+          <h4><em>Old</em> wood, slow time.</h4>
+          <p class="ko">뿌리 깊게 — 천천히.</p>
+          <p>The brand reaches back to humanist letterforms, masonry, foliage, iron. The chateau itself is built slowly — the system should feel built, not generated.</p>
+        </div>
+        <div class="value">
+          <div class="num">02 · Bilingual, equal weight</div>
+          <h4><em>Two</em> tongues, one room.</h4>
+          <p class="ko">두 언어 — 한 식탁.</p>
+          <p>Korean is never a translation footnote. It sits beside English at the same size and the same care. Each school's distinct voice was lost in year one when this slipped — it is the first rule the templates hold.</p>
+        </div>
+        <div class="value">
+          <div class="num">03 · Walking alongside</div>
+          <h4><em>Beside,</em> not above.</h4>
+          <p class="ko">곁에서 — 위에서가 아닌.</p>
+          <p>The voice never directs from above. It walks beside the reader — plain sentences, honest about pace and cost. Aspirational gradients and stock heroics aren't our register.</p>
+        </div>
+        <div class="value">
+          <div class="num">04 · Unperformed</div>
+          <h4><em>Plain</em> light, real faces.</h4>
+          <p class="ko">꾸미지 않음 — 그대로의 빛.</p>
+          <p>Pure documentary isn't enough — neither is gloss. We direct with restraint: available light, candid moments, declarative copy. Not afraid to show work in progress.</p>
+        </div>
+        <div class="value">
+          <div class="num">05 · Learnable</div>
+          <h4><em>Any</em> hand can hold it.</h4>
+          <p class="ko">누구나 이어 쓸 수 있도록.</p>
+          <p>The brand cannot depend on one technical person. Templates, tokens, and rules are written so a new staff member or student can carry it forward — in Canva, in print, on the website.</p>
+        </div>
+        <div class="value">
+          <div class="num">06 · One Korea, named</div>
+          <h4><em>The</em> gateway, said plainly.</h4>
+          <p class="ko">원 코리아 — 우리의 입구.</p>
+          <p>One Korea isn't a campaign — it is the lens. Every divided place is read through it. The system uses the words concretely: One Korea, North Korea, reconciliation, reunification. Plain nouns, no euphemism.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 02 VOICE & TONE ─── -->
+<section class="section" id="voice" data-screen-label="02 Voice" data-cc-id="cc-22">
+  <div class="page" data-cc-id="cc-23">
+    <header class="section-head">
+      <div class="section-num">Section <strong data-cc-id="cc-25">02</strong></div>
+      <div>
+        <h2 style="font-size: clamp(40px, 6.5vw, 88px); font-weight: 500">Voice &amp; <em>tone.</em></h2>
+        <p class="section-sub" style="font-weight: 500">Distilled from Brand Workshop 2 — the synthesized brand sentence, the Golden Circle, the four movements every project lives inside, and the principles that govern how we write.</p>
+      </div>
+    </header>
+
+    <div class="subsection" data-cc-id="cc-27">
+      <h3 class="subsection-label" data-cc-id="cc-26"><span style="font-family: Inter; font-size: 11px; font-weight: 500; text-align: left; height: 13px;" data-cc-id="cc-24">The north star</span><span class="hint">One sentence — precise enough to make decisions from, human enough to be spoken aloud</span></h3>
+      <div class="northstar" style="margin: 22px 0px 0px; background-color: rgb(67, 105, 48)" data-cc-id="cc-28">
+        <div class="pin">Brand sentence · synthesized</div>
+        <blockquote>
+          YWAM Château exists for young people to encounter <em>God's presence,</em> recover their <em>true purpose,</em> and become a <em>multicultural family</em> that carries His heart for <em>reconciliation</em> — in One Korea, and in every divided place.
+        </blockquote>
+        <p class="ko-line">YWAM 샤또는 청년들이 하나님의 임재를 만나고, 본래의 부르심을 회복하며, 그분의 화해의 마음을 품은 다문화 가족이 되도록 — 원 코리아 안에서, 그리고 모든 분단된 자리에서 — 존재합니다.</p>
+        <div class="source">
+          <span>Workshop 2 · 22 April 2026</span>
+          <span>Distilled from 11 contributions · KO + EN</span>
+          <span>Use as the test, not the tagline</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span style="" data-cc-id="cc-29">The four movements</span><span class="hint">Encounter → restoration → family → reconciliation · every project lives inside this arc</span></h3>
+      <div class="movements">
+        <div class="movement">
+          <div class="arrow"><span class="dot"></span>I · Encounter</div>
+          <h4><em>Presence,</em> first.</h4>
+          <p class="ko">하나님의 임재 — 시작점.</p>
+          <p>Before strategy or program, an encounter with God's presence. The interior experience that makes everything else real rather than programmatic.</p>
+        </div>
+        <div class="movement">
+          <div class="arrow"><span class="dot"></span>II · Restoration</div>
+          <h4><em>Purpose,</em> recovered.</h4>
+          <p class="ko">잃었던 부르심의 회복.</p>
+          <p>For those who lost their motivation for life — direction returns. Hope and habits that re-form a productive, God-shaped life.</p>
+        </div>
+        <div class="movement">
+          <div class="arrow"><span class="dot"></span>III · Family</div>
+          <h4><em>Multicultural,</em> by table.</h4>
+          <p class="ko">한 식탁의 다문화 가족.</p>
+          <p>Not an audience but a household — Korean and international, staff and student, living together honestly. Not pretending. Not treating mistakes as failures.</p>
+        </div>
+        <div class="movement">
+          <div class="arrow"><span class="dot"></span>IV · Reconciliation</div>
+          <h4><em>One Korea</em> — and every divided place.</h4>
+          <p class="ko">원 코리아 — 그리고 모든 분단된 자리.</p>
+          <p>The outward direction. One Korea is named concretely because it is irreplaceable. "Every divided place" keeps the theological scope: the vision is not only for a peninsula.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span>The Golden Circle</span><span class="hint">Why → How → What · communication from the inside out</span></h3>
+      <div class="golden">
+        <div class="ring">
+          <div class="stamp"><span class="num">Why</span><span class="label">The belief</span></div>
+          <h4>God's heart is for every <em>divided</em> and broken place.</h4>
+          <p>And young people, when rooted in who they are and who God is, become the ones who carry that heart into the world. <strong style="color: var(--stone); font-weight: 500;">One Korea is the gateway</strong> — the boundary where inside and outside meet, the entrance into a closed world and the exit through which reconciliation flows out.</p>
+          <ul class="bullets">
+            <li>Young people as God's primary agents — not a demographic, but the called.</li>
+            <li>Reconciliation between God and people, between divided nations, between a person and their identity.</li>
+            <li>A refuge of transformation — not mere acceptance, but revelation that restores.</li>
+            <li>Calling, not lifestyle — for Korean youth, the burden for the North is spiritual inheritance.</li>
+          </ul>
+        </div>
+        <div class="ring" data-cc-id="cc-8">
+          <div class="stamp"><span class="num" style="font-family: &quot;Cormorant Garamond&quot;; font-size: 36px; font-weight: 400;" data-cc-id="cc-9">How</span><span class="label">The approach</span></div>
+          <h4>Community that feels like <em>family.</em> Prayer before action.</h4>
+          <p>Schools that form identity and expand vision. Honest, vulnerable relationships. Creative and strategic pioneering. A consistent posture of walking alongside people — not directing them from above.</p>
+          <ul class="bullets">
+            <li>Community as method — living together honestly, not pretending.</li>
+            <li>Prayer and worship as navigation — direction discerned before any action.</li>
+            <li>Creativity, initiative, adventurous posture — innovation as expression of calling.</li>
+            <li>Testimony and personal experience — transformation begins in lived story.</li>
+            <li>Walking alongside — accompanying people in their growth and calling.</li>
+          </ul>
+        </div>
+        <div class="ring">
+          <div class="stamp"><span class="num" style="" data-cc-id="cc-10">What</span><span class="label">The offer</span></div>
+          <h4>Schools, vision nights, outreach, <em>community life.</em></h4>
+          <p>Programs and events through which the Why and How become tangible — a pioneering base that models how creative, strategic ministry can be built from the ground up.</p>
+          <ul class="bullets">
+            <li>OKDTS · One Korea Discipleship Training School — six months, EN + KO.</li>
+            <li>DBS · Discipleship Bible School — twelve weeks of intensive Bible.</li>
+            <li>SPL · School of Pioneering Leadership — for those called to pioneer.</li>
+            <li>One Korea Vision Night / Concert — testimony, worship, invitation.</li>
+            <li>Outreach to China, Europe, SE Asia, Latin America · NK border ministry.</li>
+            <li>Short seminars, business + creative gatherings, food ministry, community life.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span>How we sound</span><span class="hint">Eight principles for writing — short, plain, theologically grounded, bilingual</span></h3>
+      <div class="principles">
+        <div class="principle">
+          <div class="num">01 · Plainspoken</div>
+          <h4>Short sentences. <em>Real</em> nouns.</h4>
+          <p class="ko">짧은 문장. 분명한 명사.</p>
+          <p>The audit named what was missing, not what was almost-there. We write the same way: name the thing. Avoid corporate softness, devotional padding, or marketing superlatives.</p>
+          <div class="pair">
+            <div class="yes">
+              <span class="tag">Write</span>
+              <p class="line">Six pastors. Six escapes. One Korea — a journey home.</p>
+              <p class="line-ko">여섯 명의 목사. 여섯 번의 탈북. 원 코리아 — 집으로 가는 여정.</p>
+            </div>
+            <div class="no">
+              <span class="tag">Don't write</span>
+              <p class="line">Embark on a transformative journey of discovery and impact.</p>
+              <p class="line-ko">변화와 발견, 임팩트의 여정을 떠나보세요.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="num">02 · Bilingual without footnotes</div>
+          <h4>Korean stands <em>beside,</em> not below.</h4>
+          <p class="ko">한국어는 각주가 아니다.</p>
+          <p>Korean copy is set in the same scale, weight, and care as English. It is not a literal translation in italics — it carries its own voice. Each line is set so a Korean and an English reader meet the same sentence.</p>
+          <div class="pair">
+            <div class="yes">
+              <span class="tag">Write</span>
+              <p class="line">A house with weight.</p>
+              <p class="line-ko" style="color: var(--stone); font-size: 15px; margin-top: -10px;">함께 쌓는 집 — 무게가 있는 집.</p>
+            </div>
+            <div class="no">
+              <span class="tag">Don't write</span>
+              <p class="line">A house with weight <em style="color: var(--stone-400); font-style: italic;">(무게가 있는 집)</em></p>
+              <p class="line-ko">한국어를 영어 옆에 작은 괄호로.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="num">03 · Beside, not above</div>
+          <h4>We <em>walk</em> with — we don't <em>direct</em> from.</h4>
+          <p class="ko">곁에서 걷는다 — 위에서 지시하지 않는다.</p>
+          <p>The reader is met as a peer, not a project. We say "we" when we mean it. We don't promise transformation; we make room for it. Imperative voice is reserved for invitations, not instructions.</p>
+          <div class="pair">
+            <div class="yes">
+              <span class="tag">Write</span>
+              <p class="line">We make room for what God might do. Come and see.</p>
+              <p class="line-ko">하나님께서 하실 일을 위해 자리를 마련합니다. 와서 보십시오.</p>
+            </div>
+            <div class="no">
+              <span class="tag">Don't write</span>
+              <p class="line">Discover the breakthrough that will change your life forever.</p>
+              <p class="line-ko">당신의 삶을 영원히 바꿀 돌파를 만나보세요.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="num">04 · Honest about cost</div>
+          <h4>Six months. <em>Real</em> outreach. <em>Real</em> tuition.</h4>
+          <p class="ko">정직하게 — 시간도, 비용도.</p>
+          <p>Length, language requirement, location, money — named clearly and early. The brand respects the reader by not hiding the parts that ask something of them.</p>
+          <div class="pair">
+            <div class="yes">
+              <span class="tag">Write</span>
+              <p class="line">Six months · Colorado lecture phase · field outreach · ages 18–30.</p>
+              <p class="line-ko">6개월 · 콜로라도 강의 · 현장 선교 · 18–30세.</p>
+            </div>
+            <div class="no">
+              <span class="tag">Don't write</span>
+              <p class="line">An unforgettable season of growth, in a beautiful setting.</p>
+              <p class="line-ko">아름다운 환경에서, 잊지 못할 성장의 계절.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="num">05 · Theology, plainly</div>
+          <h4>Use the <em>words</em> we mean.</h4>
+          <p class="ko">신학적 언어를 — 분명하게.</p>
+          <p>God, Jesus, Holy Spirit, prayer, reconciliation, repentance, calling. Don't substitute "spirituality" or "energy" for theological nouns. We are a missionary base — language carries the work.</p>
+          <div class="pair">
+            <div class="yes">
+              <span class="tag">Write</span>
+              <p class="line">A six-month discipleship around God's heart for One Korea.</p>
+              <p class="line-ko">원 코리아를 향한 하나님의 마음을 따르는 6개월 제자훈련.</p>
+            </div>
+            <div class="no">
+              <span class="tag">Don't write</span>
+              <p class="line">A transformative spiritual experience focused on reconciliation energies.</p>
+              <p class="line-ko">화해의 에너지에 집중하는 변화의 영성 체험.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="num">06 · One Korea, named</div>
+          <h4>Say the <em>place,</em> not the metaphor.</h4>
+          <p class="ko">이름을 부른다 — 비유가 아닌.</p>
+          <p>One Korea, North Korea, the peninsula, reunification, reconciliation. Concrete nouns. Don't soften with abstraction ("a certain region"), don't dramatize ("the forbidden land"). The vision is also for every divided place — write that scope explicitly.</p>
+          <div class="pair">
+            <div class="yes">
+              <span class="tag">Write</span>
+              <p class="line">North Korea, when it opens. Until then — the border.</p>
+              <p class="line-ko">북한이 열릴 때 — 그때까지는 국경에서.</p>
+            </div>
+            <div class="no">
+              <span class="tag">Don't write</span>
+              <p class="line">A closed nation in the East, awaiting a great awakening.</p>
+              <p class="line-ko">큰 부흥을 기다리는 동방의 닫힌 나라.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="num">07 · Testimony over claim</div>
+          <h4>One <em>person</em> says it.</h4>
+          <p class="ko">한 사람의 증언이 — 한 문장의 광고보다.</p>
+          <p>Vision Night and Concert taught us this: transformation is communicated through individual testimony, not aggregate claim. Where we can, attribute. Where we can't, write as witness, not as marketer.</p>
+          <div class="pair">
+            <div class="yes">
+              <span class="tag">Write</span>
+              <p class="line">"The place spoke me into a language." — Eun-ji, OKDTS '24</p>
+              <p class="line-ko">"이 자리가 나를 한 언어 안으로 데려갔다." — 은지, OKDTS '24</p>
+            </div>
+            <div class="no">
+              <span class="tag">Don't write</span>
+              <p class="line">Hundreds of lives changed. Thousands of stories. Endless impact.</p>
+              <p class="line-ko">변화된 수백 명의 삶, 수천 개의 이야기, 끝없는 임팩트.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="num">08 · Pioneer, in progress</div>
+          <h4>Show the <em>building,</em> not just the building.</h4>
+          <p class="ko">짓고 있는 모습 그대로.</p>
+          <p>The base is pioneering — schools are being formed, the chateau is being made livable. We don't pretend it's finished. Honesty about the in-progress is part of the invitation: come and help build.</p>
+          <div class="pair">
+            <div class="yes">
+              <span class="tag">Write</span>
+              <p class="line">First DBS class · April 2027 · dates to be confirmed.</p>
+              <p class="line-ko">첫 번째 DBS · 2027년 4월 · 일정 확정 예정.</p>
+            </div>
+            <div class="no">
+              <span class="tag">Don't write</span>
+              <p class="line">Now enrolling · world-class Bible training · since forever.</p>
+              <p class="line-ko">지금 등록 · 세계 최고 수준의 성경 훈련 · 오래된 전통.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span>Tone dial</span><span class="hint">Where we sit on the axes that matter — read these before you write</span></h3>
+      <div class="dials">
+        <div class="dial">
+          <div class="end">Devotional · interior</div>
+          <div class="track"><span class="pin" style="left: 62%;"></span><span class="label" style="left: 62%;">Witnessing</span></div>
+          <div class="end right lit">Reportorial · <em>witnessing</em></div>
+        </div>
+        <div class="dial">
+          <div class="end">Marketing · aspirational</div>
+          <div class="track"><span class="pin" style="left: 88%;"></span><span class="label" style="left: 88%;">Plainspoken</span></div>
+          <div class="end right lit"><em>Plain</em> · grounded</div>
+        </div>
+        <div class="dial">
+          <div class="end">Soft · poetic</div>
+          <div class="track"><span class="pin" style="left: 55%;"></span><span class="label" style="left: 55%;">Honest</span></div>
+          <div class="end right lit">Honest · <em>specific</em></div>
+        </div>
+        <div class="dial">
+          <div class="end">Korean as translation</div>
+          <div class="track"><span class="pin" style="left: 100%;"></span><span class="label" style="left: 100%; transform: translateX(-100%);">Equal weight</span></div>
+          <div class="end right lit">Korean and English, <em>equal</em></div>
+        </div>
+        <div class="dial">
+          <div class="end">Polished · finished</div>
+          <div class="track"><span class="pin" style="left: 35%;"></span><span class="label" style="left: 35%;">In progress</span></div>
+          <div class="end right">Pioneering · <em>in progress</em></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span>Workshop voices</span><span class="hint">Verbatim from team contributions · the source the brand voice answers to</span></h3>
+      <div class="testimony">
+        <figure class="dark">
+          <blockquote>YC exists to provide an intentional place for young people to take a pause from their life routines and come focused on learning who God is and who they are.</blockquote>
+          <figcaption>— JI · Why · Workshop 2</figcaption>
+        </figure>
+        <figure>
+          <blockquote>Not merely a refuge that tolerates everything, but a refuge where people are restored and transformed through revelation and truth.</blockquote>
+          <p class="ko">단순히 모든 것을 용납해주는 피난처가 아니라, 계시와 진리로 회복되고 변화되는 피난처.</p>
+          <figcaption>— Yaeju Kim · Why · Workshop 2</figcaption>
+        </figure>
+        <figure>
+          <blockquote>Honest and clear communication. Not being afraid to be vulnerable. Not treating mistakes as failures.</blockquote>
+          <p class="ko">정직함과 명확한 소통, 취약해지는 것들 두려워하지 않는 것. 실수를 실패로 가져가지 않는 것.</p>
+          <figcaption>— Yaeju Kim · How · Workshop 2</figcaption>
+        </figure>
+        <figure class="dark">
+          <blockquote>So that in pioneering, not only the physical but also the conceptual dimensions of vision can be expanded together within God.</blockquote>
+          <p class="ko">개척 안에서 물리적인 것 뿐 아니라 비전에 대한 관념적인 것들도 하나님 안에서 확장해 나가는 것을.</p>
+          <figcaption>— HaEun · Why · Workshop 2</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 03 COLORS ─── -->
+<section class="section" id="colors" data-screen-label="03 Colors" data-cc-id="cc-1">
+  <div class="page" data-cc-id="cc-2">
+    <header class="section-head">
+      <div class="section-num">Section <strong>03</strong></div>
+      <div>
+        <h2 style="font-size: clamp(40px, 6.5vw, 88px)">Colors, <em>by hand.</em></h2>
+        <p class="section-sub">Three palettes — primary (warm cream, gold, moss), neutrals (stone), and One Korea blues for testimony and bilingual contexts.</p>
+      </div>
+    </header>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span>Primary</span><span class="hint">Cream is the page · moss is the brand · gold is the spark</span></h3>
+      <div class="color-row">
+        <div class="swatch lg"><div class="chip" style="background: var(--cream); color: var(--stone);"><div class="info"><b>Cream</b>#F5F0E8 · page</div></div></div>
+        <div class="swatch lg"><div class="chip" style="background: var(--blush); color: var(--stone);"><div class="info"><b>Blush</b>#E8D4C6 · panel</div></div></div>
+        <div class="swatch lg"><div class="chip" style="background: var(--gold); color: var(--cream);"><div class="info"><b>Gold</b>#C8922A · accent</div></div></div>
+        <div class="swatch lg"><div class="chip" style="background: var(--moss-deep); color: var(--cream);"><div class="info"><b>Moss</b>#426930 · brand</div></div></div>
+        <div class="swatch lg"><div class="chip" style="background: var(--terra); color: var(--cream);"><div class="info"><b>Terra</b>#C57B57 · italic</div></div></div>
+        <div class="swatch lg"><div class="chip" style="background: var(--sage); color: var(--cream);"><div class="info"><b>Sage</b>#8FA68E · soft</div></div></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span>Neutrals</span><span class="hint">Warm grey, never cool. Built around stone #2B2620</span></h3>
+      <div class="color-row">
+        <div class="swatch"><div class="chip" style="background: var(--paper); color: var(--stone); box-shadow: inset 0 0 0 1px var(--border-soft);"><div class="info"><b>Paper</b>#FFFFFF</div></div></div>
+        <div class="swatch"><div class="chip" style="background: var(--stone-100); color: var(--stone);"><div class="info"><b>Stone 100</b>#E8E4DC</div></div></div>
+        <div class="swatch"><div class="chip" style="background: var(--stone-200); color: var(--stone);"><div class="info"><b>Stone 200</b>#CEC7BD</div></div></div>
+        <div class="swatch"><div class="chip" style="background: var(--stone-400); color: var(--cream);"><div class="info"><b>Stone 400</b>#8A8178</div></div></div>
+        <div class="swatch"><div class="chip" style="background: var(--stone-700); color: var(--cream);"><div class="info"><b>Stone 700</b>#3A322B</div></div></div>
+        <div class="swatch"><div class="chip" style="background: var(--stone); color: var(--cream);"><div class="info"><b>Stone</b>#2B2620</div></div></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span>One Korea — accent palette</span><span class="hint">For bilingual context, testimony pages, the One Korea program</span></h3>
+      <div class="color-row">
+        <div class="swatch"><div class="chip" style="background: var(--ok-deep); color: var(--cream);"><div class="info"><b>Deep</b>#1A2A3A</div></div></div>
+        <div class="swatch"><div class="chip" style="background: var(--ok-falls); color: var(--cream);"><div class="info"><b>Falls</b>#3A6878</div></div></div>
+        <div class="swatch"><div class="chip" style="background: var(--ok-mist); color: var(--stone);"><div class="info"><b>Mist</b>#8EB8C2</div></div></div>
+        <div class="swatch"><div class="chip" style="background: var(--ok-reach); color: var(--stone);"><div class="info"><b>Reach</b>#B8D8E4</div></div></div>
+        <div class="swatch"><div class="chip" style="background: var(--ok-sky); color: var(--stone);"><div class="info"><b>Sky</b>#D4DEE2</div></div></div>
+        <div class="swatch"><div class="chip" style="background: linear-gradient(180deg, var(--ok-deep), var(--ok-sky)); color: var(--cream);"><div class="info"><b>Range</b>full scale</div></div></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span>Harmony &amp; application</span><span class="hint">How the palettes pair on real layouts — page surface, accent, and weight</span></h3>
+      <div class="harmony" data-cc-id="cc-11">
+
+        <!-- 1. Cream + moss + gold (default editorial) -->
+        <div class="harmony-card" data-cc-id="cc-8">
+          <div class="preview" style="background: var(--cream); color: var(--stone);" data-cc-id="cc-3">
+            <span class="pill" style="background: var(--moss-deep); color: var(--cream);">Discipleship</span>
+            <div class="title-pair">
+              <h4 class="h" style="font-weight: 500">A house with <em style="color: var(--moss-deep);">weight.</em></h4>
+              <p class="h-ko">무게가 있는 집.</p>
+            </div>
+            <span class="meta" style="color: var(--gold-deep);" data-cc-id="cc-4">Apply for April 2026 →</span>
+          </div>
+          <div class="legend" data-cc-id="cc-6"><b data-cc-id="cc-5">Editorial · default</b><span class="swatch-dot" style="background: var(--cream);"></span>Cream<span class="swatch-dot" style="background: var(--moss-deep);"></span>Moss<span class="swatch-dot" style="background: var(--gold);"></span>Gold</div>
+        </div>
+
+        <!-- 2. Moss reversed -->
+        <div class="harmony-card" data-cc-id="cc-12">
+          <div class="preview" style="background: var(--moss-deep); color: var(--cream);" data-cc-id="cc-14">
+            <span class="pill" style="background: rgba(245,240,232,0.14); color: var(--cream); border: 1px solid rgba(245,240,232,0.3);">Newsletter</span>
+            <div class="title-pair">
+              <h4 class="h" style="color: var(--cream); font-weight: 500">Drawing near, <em style="color: #E8C97D;">together.</em></h4>
+              <p class="h-ko" style="color: rgba(245,240,232,0.72);">함께 가까이 다가가는 집.</p>
+            </div>
+            <span class="meta" style="color: rgba(245,240,232,0.7);">From the chateau, monthly · 매달</span>
+          </div>
+          <div class="legend" data-cc-id="cc-13" style=""><b data-cc-id="cc-15">Reversed · ground</b><span class="swatch-dot" style="background: var(--moss-deep);"></span>Moss<span class="swatch-dot" style="background: var(--cream);"></span>Cream<span class="swatch-dot" style="background: #E8C97D;"></span>Gold-warm</div>
+        </div>
+
+        <!-- 3. Stone + gold (closing / dark band) -->
+        <div class="harmony-card">
+          <div class="preview" style="background: var(--stone); color: var(--cream);">
+            <span class="pill" style="background: var(--gold); color: var(--stone);">Apply</span>
+            <div class="title-pair">
+              <h4 class="h" style="color: var(--cream); font-weight: 500">A door, <em style="color: var(--gold);">still open.</em></h4>
+              <p class="h-ko" style="color: rgba(245,240,232,0.66);">여전히 열려 있는 문.</p>
+            </div>
+            <span class="meta" style="color: rgba(245,240,232,0.6);">DTS · Apr–Aug 2026</span>
+          </div>
+          <div class="legend"><b>Closing band</b><span class="swatch-dot" style="background: var(--stone);"></span>Stone<span class="swatch-dot" style="background: var(--gold);"></span>Gold<span class="swatch-dot" style="background: var(--cream);"></span>Cream</div>
+        </div>
+
+        <!-- 4. Blush + terra (warm photographic) -->
+        <div class="harmony-card">
+          <div class="preview" style="background: var(--blush); color: var(--stone-700);" data-cc-id="cc-7">
+            <span class="pill" style="background: var(--terra); color: var(--cream);">Story</span>
+            <div class="title-pair">
+              <h4 class="h" style="font-weight: 500">Six escapes, <em style="color: var(--terra);">one home.</em></h4>
+              <p class="h-ko">여섯 번의 도피, 하나의 집.</p>
+            </div>
+            <span class="meta" style="color: var(--stone-soft);">A pastor's journey · 한 목회자의 여정</span>
+          </div>
+          <div class="legend"><b>Warm · photographic</b><span class="swatch-dot" style="background: var(--blush);"></span>Blush<span class="swatch-dot" style="background: var(--terra);"></span>Terra<span class="swatch-dot" style="background: var(--stone);"></span>Stone</div>
+        </div>
+
+        <!-- 5. One Korea Deep + Mist -->
+        <div class="harmony-card">
+          <div class="preview" style="background: var(--ok-deep); color: var(--cream);" data-cc-id="cc-9">
+            <span class="pill" style="background: var(--ok-mist); color: var(--ok-deep);" data-cc-id="cc-10">One Korea</span>
+            <div class="title-pair">
+              <h4 class="h" style="color: var(--cream); font-weight: 500" data-cc-id="cc-21">Where rivers <em style="color: var(--ok-mist);" data-cc-id="cc-20">meet the sea.</em></h4>
+              <p class="h-ko" style="color: rgba(245,240,232,0.72);">강들이 바다와 만나는 곳.</p>
+            </div>
+            <span class="meta" style="color: var(--ok-reach);">Bilingual testimony · 통일</span>
+          </div>
+          <div class="legend"><b>One Korea · testimony</b><span class="swatch-dot" style="background: var(--ok-deep);"></span>Deep<span class="swatch-dot" style="background: var(--ok-mist);"></span>Mist<span class="swatch-dot" style="background: var(--ok-reach);"></span>Reach</div>
+        </div>
+
+        <!-- 6. Sage + cream (DBS / quiet) -->
+        <div class="harmony-card" data-cc-id="cc-18">
+          <div class="preview" style="background: var(--cream); color: var(--stone);" data-cc-id="cc-16">
+            <span class="pill" style="background: var(--sage); color: var(--cream);">DBS</span>
+            <div class="title-pair">
+              <h4 class="h" style="font-weight: 500" data-cc-id="cc-17">Drawing near <em style="color: var(--sage);" data-cc-id="cc-19">through study.</em></h4>
+              <p class="h-ko">말씀 안에서 다가가는 집.</p>
+            </div>
+            <span class="meta" style="color: var(--stone-soft);">Discipleship Bible School · 9 weeks</span>
+          </div>
+          <div class="legend"><b>Quiet · DBS</b><span class="swatch-dot" style="background: var(--cream);"></span>Cream<span class="swatch-dot" style="background: var(--sage);"></span>Sage<span class="swatch-dot" style="background: var(--stone);"></span>Stone</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 04 TYPE ─── -->
+<section class="section" id="type" data-screen-label="04 Type">
+  <div class="page">
+    <header class="section-head">
+      <div class="section-num">Section <strong>04</strong></div>
+      <div>
+        <h2 style="font-size: clamp(40px, 6.5vw, 88px)">Typography, <em>set in stone.</em></h2>
+        <p class="section-sub">Cormorant Garamond for display and editorial weight. Inter for utility text. Noto for Korean. The italic is the brand voice. <em>Travel Poster Sans &amp; Script in test below.</em></p>
+      </div>
+    </header>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span>Display &amp; headings</span><span class="hint">Cormorant Garamond · 500 · italic accents the verb</span></h3>
+      <div class="type-spec">
+        <div class="meta"><b>Display</b><span>Cormorant 500</span><span>88 / 0.98 / -0.022em</span></div>
+        <div class="sample t-display">A house with <em>weight.</em></div>
+      </div>
+      <div class="type-spec">
+        <div class="meta"><b>Heading 1</b><span>Cormorant 500</span><span>56 / 1.05 / -0.018em</span></div>
+        <div class="sample t-h1">Drawing near <em>through study.</em></div>
+      </div>
+      <div class="type-spec">
+        <div class="meta"><b>Heading 2</b><span>Cormorant 500</span><span>40 / 1.10 / -0.014em</span></div>
+        <div class="sample t-h2">Programs of the chateau</div>
+      </div>
+      <div class="type-spec">
+        <div class="meta"><b>Italic eyebrow</b><span>Cormorant italic 500</span><span>28 / 1.20</span></div>
+        <div class="sample t-h3">An older language for a young vocation.</div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span>Body, lede &amp; meta</span><span class="hint">Inter for clarity · italic Cormorant for ledes</span></h3>
+      <div class="type-spec">
+        <div class="meta"><b>Lede</b><span>Cormorant italic 400</span><span>22 / 1.45</span></div>
+        <div class="sample t-lede">Six pastors. Six escapes. One Korea — a journey home, told in their own words.</div>
+      </div>
+      <div class="type-spec">
+        <div class="meta"><b>Body</b><span>Inter 400</span><span>16 / 1.65</span></div>
+        <div class="sample t-body">The Discipleship Training School is a five-month immersion: three months of teaching at the chateau and two months of outreach. We don't promise transformation, but we make room for it.</div>
+      </div>
+      <div class="type-spec">
+        <div class="meta"><b>Eyebrow</b><span>Inter 500 · uppercase</span><span>11 / 0.22em tracking</span></div>
+        <div class="sample t-meta">Discipleship · Apr–Aug 2026 · Bilingual</div>
+      </div>
+      <div class="type-spec">
+        <div class="meta"><b>Mono</b><span>Inter 400 · tabular</span><span>12.5 / 0.02em</span></div>
+        <div class="sample t-mono">info@ywamchateau.com · 47.21°N 6.02°E · v1.0</div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span>Korean</span><span class="hint">Noto Serif KR alongside Cormorant · Noto Sans KR alongside Inter</span></h3>
+      <div class="type-spec">
+        <div class="meta"><b>Heading · KO</b><span>Noto Serif KR 500</span><span>32 / 1.25</span></div>
+        <div class="sample t-ko-serif">함께 쌓는 집 — 무게가 있는 집.</div>
+      </div>
+      <div class="type-spec">
+        <div class="meta"><b>Body · KO</b><span>Noto Sans KR 500</span><span>18 / 1.6</span></div>
+        <div class="sample t-ko-sans">제자훈련학교는 다섯 달의 깊은 만남입니다 — 가르침과 훈련, 그리고 선교.</div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span>In test · Travel Poster family</span><span class="hint">Sans for Headline 2 · Script for detail accents · evaluation only</span></h3>
+      <div class="type-spec">
+        <div class="meta"><b>Headline 2</b><span>Travel Poster Sans · 400</span><span>64 / 1.05 · uppercase</span></div>
+        <div class="sample t-poster">A house with weight.</div>
+      </div>
+      <div class="type-spec">
+        <div class="meta"><b>Headline 2 · alt</b><span>Travel Poster Sans · 400</span><span>48 / 1.10 · uppercase</span></div>
+        <div class="sample t-poster" style="font-size: 48px;">Drawing near, together.</div>
+      </div>
+      <div class="type-spec">
+        <div class="meta"><b>Detail · script</b><span>Travel Poster Script · 400</span><span>44 / 1.10 · terracotta</span></div>
+        <div class="sample t-script">an older language for a young vocation.</div>
+      </div>
+      <div class="type-spec">
+        <div class="meta"><b>Detail · inline</b><span>Travel Poster Script · 400</span><span>28 / 1.20 · accent</span></div>
+        <div class="sample t-script" style="font-size: 28px;">six pastors, six escapes — one Korea.</div>
+      </div>
+      <div class="type-spec" style="border-bottom: none;">
+        <div class="meta"><b>Pairing test</b><span>Sans headline + script kicker</span><span>poster atop script · stacked</span></div>
+        <div class="sample">
+          <div class="t-script" style="font-size: 32px; margin-bottom: 4px;">a quiet welcome to —</div>
+          <div class="t-poster" style="font-size: 56px;">the Château.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 05 SPACING ─── -->
+<section class="section" id="spacing" data-screen-label="05 Spacing">
+  <div class="page">
+    <header class="section-head">
+      <div class="section-num">Section <strong>05</strong></div>
+      <div>
+        <h2 style="font-size: clamp(40px, 6.5vw, 88px)">Spacing &amp; <em>surface.</em></h2>
+        <p class="section-sub">A 4-pt grid, hand-feeling radii, and three shadow weights. The chateau is built in stone — surfaces are quiet.</p>
+      </div>
+    </header>
+
+    <div class="subsection spacing-radii">
+      <div class="spacing-col">
+        <h3 class="subsection-label"><span>Spacing scale · 4-pt</span></h3>
+        <div>
+          <div class="scale"><b>2xs</b><span>4px</span><div class="bar" style="width: 4px;"></div></div>
+          <div class="scale"><b>xs</b><span>8px</span><div class="bar" style="width: 8px;"></div></div>
+          <div class="scale"><b>sm</b><span>12px</span><div class="bar" style="width: 12px;"></div></div>
+          <div class="scale"><b>md</b><span>16px</span><div class="bar" style="width: 16px;"></div></div>
+          <div class="scale"><b>lg</b><span>24px</span><div class="bar" style="width: 24px;"></div></div>
+          <div class="scale"><b>xl</b><span>32px</span><div class="bar" style="width: 32px;"></div></div>
+          <div class="scale"><b>2xl</b><span>48px</span><div class="bar" style="width: 48px;"></div></div>
+          <div class="scale"><b>3xl</b><span>64px</span><div class="bar" style="width: 64px;"></div></div>
+          <div class="scale"><b>4xl</b><span>96px</span><div class="bar" style="width: 96px;"></div></div>
+          <div class="scale" style="border-bottom: none;"><b>5xl</b><span>128px</span><div class="bar" style="width: 128px;"></div></div>
+        </div>
+      </div>
+      <div class="radii-col">
+        <h3 class="subsection-label"><span>Radii</span><span class="hint">Mostly square · pill for tags · soft md for cards</span></h3>
+        <div class="radii radii--inline">
+          <div><div class="demo"><div class="box" style="border-radius: 0;"></div></div><div class="meta"><b>none</b>0</div></div>
+          <div><div class="demo"><div class="box" style="border-radius: 4px;"></div></div><div class="meta"><b>xs</b>4px</div></div>
+          <div><div class="demo"><div class="box" style="border-radius: 6px;"></div></div><div class="meta"><b>sm</b>6px</div></div>
+          <div><div class="demo"><div class="box" style="border-radius: 14px;"></div></div><div class="meta"><b>md</b>14px</div></div>
+          <div><div class="demo"><div class="box" style="border-radius: 999px;"></div></div><div class="meta"><b>pill</b>999px</div></div>
+        </div>
+
+        <h3 class="subsection-label" style="margin-top: 40px;"><span>Shadows</span><span class="hint">Warm cast · low contrast · never blue</span></h3>
+        <div class="shadows shadows--inline">
+          <div class="shadow-card sm"><b>Shadow · sm</b><span>0 1px 2px / 6%</span></div>
+          <div class="shadow-card md"><b>Shadow · md</b><span>0 14px 40px -12px / 25%</span></div>
+          <div class="shadow-card lg"><b>Shadow · lg</b><span>0 24px 60px -30px / 25%</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── 06 COMPONENTS ─── -->
+<section class="section section--components" id="components" data-screen-label="06 Components">
+  <div class="page">
+    <header class="section-head">
+      <div class="section-num">Section <strong>06</strong></div>
+      <div>
+        <h2 style="font-size: clamp(40px, 6.5vw, 88px)">Components, <em>quietly.</em></h2>
+        <p class="section-sub">Buttons, tags, fields, cards, quote. The component vocabulary stays small on purpose — type and color do the heavy lifting.</p>
+      </div>
+    </header>
+
+    <div class="comp-grid">
+      <div class="comp">
+        <div class="comp-head"><b>Buttons · bilingual stack</b><span>Pill · EN/KO 15px / 14px · gold + stone + ghost</span></div>
+        <div class="comp-body" style="flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 10px; min-height: 0; padding: 24px;">
+          <a class="btn-h btn-h-gold btn-h-stack" href="#"><span class="btn-en">Apply Now</span><span class="btn-ko">지원하기</span></a>
+          <a class="btn-h btn-h-stone btn-h-stack" href="#"><span class="btn-en">Apply Now</span><span class="btn-ko">지원하기</span></a>
+          <a class="btn-h btn-h-ghost btn-h-stack" href="#"><span class="btn-en">Talk first →</span><span class="btn-ko">먼저 대화</span></a>
+        </div>
+        <div class="comp-foot"><span><b>Use:</b> Marketing CTAs · gold on cream · stone on dark · ghost as secondary</span></div>
+      </div>
+
+      <div class="comp">
+        <div class="comp-head"><b>Buttons · single-line</b><span>Pill · Inter 14 · cream / moss / ghost</span></div>
+        <div class="comp-body" style="flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 10px; min-height: 0; padding: 24px;">
+          <a class="btn-h btn-h-gold" href="#" style="font-size: 14px; padding: 12px 22px;">Apply Now</a>
+          <a class="btn-h btn-h-stone" href="#" style="font-size: 14px; padding: 12px 22px;">Read the story →</a>
+          <a class="btn-h btn-h-ghost" href="#" style="font-size: 14px; padding: 12px 22px;">View programs</a>
+        </div>
+        <div class="comp-foot"><span><b>Use:</b> Inline links, breadcrumb CTAs, and any context where the bilingual stack is too tall</span></div>
+      </div>
+
+      <div class="comp">
+        <div class="comp-head"><b>Buttons · on stone</b><span>Reversed surfaces · gold or cream-ghost</span></div>
+        <div class="comp-body" style="flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 10px; min-height: 0; padding: 24px; background: var(--stone);">
+          <a class="btn-h btn-h-gold btn-h-stack" href="#"><span class="btn-en">Apply Now</span><span class="btn-ko">지원하기</span></a>
+          <a class="btn-h" href="#" style="background: transparent; color: var(--cream); border: 1px solid rgba(245,240,232,0.4); padding: 12px 22px; font-size: 14px;">Read the story →</a>
+        </div>
+        <div class="comp-foot"><span><b>Use:</b> Closing bands, dark hero strips, footers · gold remains the primary call</span></div>
+      </div>
+
+      <div class="comp">
+        <div class="comp-head"><b>Buttons · system / editorial</b><span>Uppercase 12 · 0.18em · primary, secondary, ghost</span></div>
+        <div class="comp-body" style="flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 10px; min-height: 0; padding: 24px;">
+          <button class="btn btn-primary">Apply for DTS</button>
+          <button class="btn btn-secondary">Read the story</button>
+          <a class="btn btn-ghost" href="#">View all programs</a>
+        </div>
+        <div class="comp-foot"><span><b>Use:</b> Editorial pages and admin · documents · the design system itself</span></div>
+      </div>
+
+      <div class="comp">
+        <div class="comp-head"><b>Tags</b><span>Pill · uppercase 10.5 · 0.18em · 6×12</span></div>
+        <div class="comp-body" style="flex-direction: row; flex-wrap: wrap; align-items: flex-start; gap: 10px;">
+          <span class="tag dts">Discipleship</span>
+          <span class="tag korea">One Korea</span>
+          <span class="tag swiss">Swiss base</span>
+          <span class="tag intercession">Intercession</span>
+        </div>
+        <div class="comp-foot">
+          <span><b>Use:</b> Program identity · dot color follows the program (DTS gold, DBS sage, SPL terra, One Korea Falls)</span>
+        </div>
+      </div>
+
+      <div class="comp">
+        <div class="comp-head"><b>Form field</b><span>Square 1px border · 14×16 · focuses moss</span></div>
+        <div class="comp-body" style="align-items: stretch; flex-direction: column;">
+          <div class="field">
+            <label for="ex-name">Your name</label>
+            <input id="ex-name" type="text" placeholder="Lucas Choi">
+          </div>
+        </div>
+        <div class="comp-foot">
+          <span><b>Use:</b> Application forms, contact, newsletter · Korean labels paired below English at 11/0.18em</span>
+        </div>
+      </div>
+
+      <div class="comp" style="grid-column: 1 / -1;">
+        <div class="comp-head" style="opacity: 1"><b>Program card</b><span>Cream surface · 14px radius · 1px stone-soft · hover lifts −3px</span></div>
+        <div class="comp-body" style="flex-direction: row; flex-wrap: wrap; align-items: stretch; justify-content: center; gap: 22px; ">
+          <article class="program-card program-card--dts">
+            <span class="program-tag"><span class="dot"></span>Discipleship · 제자훈련학교</span>
+            <h5>Discipleship Training School<span class="ko">제자훈련학교</span></h5>
+            <p class="program-tagline">Five months · three of teaching, two of outreach.<span class="ko">다섯 달 · 가르침과 선교.</span></p>
+            <ul class="program-meta">
+              <li>Apr–Aug 2026</li>
+              <li>Bilingual EN · KO</li>
+              <li>Château · outreach</li>
+            </ul>
+            <div class="program-cta">
+              <a class="text-link" href="#">Read more</a>
+              <span class="apply-mini">Apply for April<span class="ko">4월 지원</span></span>
+            </div>
+          </article>
+          <article class="program-card program-card--dbs">
+            <span class="program-tag"><span class="dot"></span>DBS · 성경학교</span>
+            <h5>Discipleship Bible School<span class="ko">성경학교</span></h5>
+            <p class="program-tagline">Nine weeks of book-by-book study.<span class="ko">아홉 주, 성경 공부.</span></p>
+            <ul class="program-meta">
+              <li>Sep–Nov 2026</li>
+              <li>Bilingual EN · KO</li>
+              <li>Château only</li>
+            </ul>
+            <div class="program-cta">
+              <a class="text-link" href="#">Read more</a>
+              <span class="apply-mini">Apply for autumn<span class="ko">가을 지원</span></span>
+            </div>
+          </article>
+          <article class="program-card program-card--spl">
+            <span class="program-tag"><span class="dot"></span>SPL · 리더십</span>
+            <h5>School of Pioneer Leadership<span class="ko">리더십 학교</span></h5>
+            <p class="program-tagline">Three months for those already in the field.<span class="ko">현장의 리더를 위해.</span></p>
+            <ul class="program-meta">
+              <li>Jan–Mar 2027</li>
+              <li>Bilingual EN · KO</li>
+              <li>Château · cohorts of 12</li>
+            </ul>
+            <div class="program-cta">
+              <a class="text-link" href="#">Read more</a>
+              <span class="apply-mini">Apply for winter<span class="ko">겨울 지원</span></span>
+            </div>
+          </article>
+        </div>
+        <div class="comp-foot">
+          <span><b>Spec:</b> 380px max · cream bg · dot color = program (DTS gold · DBS sage · SPL terra) · underline-on-gold text-link · ko line dims to 60% in EN-pref mode</span>
+        </div>
+      </div>
+
+      <div class="comp" style="grid-column: 1 / -1;">
+        <div class="comp-head" style="border-color: rgb(97, 93, 88)"><b>Quote / pull-quote</b><span>Cormorant italic 28 · open-quote in moss · 28ch max</span></div>
+        <div class="comp-body" style="padding: 56px; ">
+          <blockquote class="demo-quote">When I first arrived I didn't speak the language of the place. The place spoke me into a language.</blockquote>
+          <div class="demo-quote-attr">— Eun-ji, DTS '24 · Seoul</div>
+        </div>
+        <div class="comp-foot">
+          <span><b>Use:</b> Testimony pages, story features · dark variant available (gold open-quote on stone)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 07 ICONS ─── -->
+<section class="section" id="icons" data-screen-label="07 Icons">
+  <div class="page">
+    <header class="section-head">
+      <div class="section-num">Section <strong>07</strong></div>
+      <div>
+        <h2 style="font-size: clamp(40px, 6.5vw, 88px)">Icons, <em>thin and quiet.</em></h2>
+        <p class="section-sub">A small set of single-stroke icons at 1.4 weight. The mark itself does most of the iconographic work — these support wayfinding only.</p>
+      </div>
+    </header>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span>Color application</span><span class="hint">Same icon, four contexts. Currentcolor inherits the surface — so an icon never carries its own brand color.</span></h3>
+      <div class="icon-application">
+        <div class="icon-app on-cream">
+          <div class="row"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-7h-6v7H4a1 1 0 01-1-1z"></path></svg><span class="lbl">on cream</span></div>
+          <span class="name">Stone <em style="color: var(--moss-deep);">on cream</em></span>
+        </div>
+        <div class="icon-app on-paper">
+          <div class="row"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="color: var(--moss-deep);"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-7h-6v7H4a1 1 0 01-1-1z"></path></svg><span class="lbl" style="color: var(--moss-deep);">on paper · accent</span></div>
+          <span class="name" style="color: var(--moss-deep);">Moss <em>on paper</em></span>
+        </div>
+        <div class="icon-app on-moss">
+          <div class="row"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-7h-6v7H4a1 1 0 01-1-1z"></path></svg><span class="lbl">on moss</span></div>
+          <span class="name">Cream <em style="color: #E8C97D;">on moss</em></span>
+        </div>
+        <div class="icon-app on-stone accent-gold">
+          <div class="row"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-7h-6v7H4a1 1 0 01-1-1z"></path></svg><span class="lbl" style="color: var(--gold);">on stone · gold</span></div>
+          <span class="name" style="color: var(--cream);">Gold <em style="color: var(--gold);">on stone</em></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-label"><span>Specifications</span><span class="hint">28px artwork in a 44px wirebox · single 1.4 stroke · round caps and joins · no fill</span></h3>
+      <div class="icon-grid">
+        <div>
+          <div class="icon-cell">
+            <svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-7h-6v7H4a1 1 0 01-1-1z"></path></svg>
+          </div>
+          <div class="icon-cap">home</div>
+        </div>
+        <div>
+          <div class="icon-cell">
+            <svg viewBox="0 0 24 24"><path d="M4 19V8l8-4 8 4v11"></path><path d="M4 19h16"></path><path d="M10 19v-6h4v6"></path></svg>
+          </div>
+          <div class="icon-cap">chateau</div>
+        </div>
+        <div>
+          <div class="icon-cell">
+            <svg viewBox="0 0 24 24"><path d="M4 4h12l4 4v12H4z"></path><path d="M16 4v4h4"></path><path d="M8 12h8M8 16h6"></path></svg>
+          </div>
+          <div class="icon-cap">letter</div>
+        </div>
+        <div>
+          <div class="icon-cell">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"></path></svg>
+          </div>
+          <div class="icon-cap">global</div>
+        </div>
+        <div>
+          <div class="icon-cell">
+            <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.35-7-10a7 7 0 0114 0c0 5.65-7 10-7 10z"></path><circle cx="12" cy="11" r="2.5"></circle></svg>
+          </div>
+          <div class="icon-cap">place</div>
+        </div>
+        <div>
+          <div class="icon-cell">
+            <svg viewBox="0 0 24 24"><path d="M5 4v16l7-4 7 4V4z"></path></svg>
+          </div>
+          <div class="icon-cap">scripture</div>
+        </div>
+        <div>
+          <div class="icon-cell">
+            <svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="3.5"></circle><circle cx="16" cy="11" r="2.5"></circle><path d="M3 20c1-3 3.5-5 6-5s5 2 6 5M14 20c.5-2 2-3.5 4-3.5s3.5 1.5 4 3.5"></path></svg>
+          </div>
+          <div class="icon-cap">community</div>
+        </div>
+        <div>
+          <div class="icon-cell">
+            <svg viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"></path></svg>
+          </div>
+          <div class="icon-cap">cross</div>
+        </div>
+        <div>
+          <div class="icon-cell">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+          </div>
+          <div class="icon-cap">time</div>
+        </div>
+        <div>
+          <div class="icon-cell">
+            <svg viewBox="0 0 24 24"><path d="M3 7l9 6 9-6"></path><rect x="3" y="6" width="18" height="13" rx="1"></rect></svg>
+          </div>
+          <div class="icon-cap">mail</div>
+        </div>
+        <div>
+          <div class="icon-cell">
+            <svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"></path></svg>
+          </div>
+          <div class="icon-cap">approved</div>
+        </div>
+        <div>
+          <div class="icon-cell">
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </div>
+          <div class="icon-cap">forward</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 08 SLIDES ─── -->
+<section class="section" id="slides" data-screen-label="08 Slides">
+  <div class="page">
+    <header class="section-head">
+      <div class="section-num">Section <strong>08</strong></div>
+      <div>
+        <h2 style="font-size: clamp(40px, 6.5vw, 88px)">Slide <em>templates.</em></h2>
+        <p class="section-sub">Five 1280×720 templates that hold the brand through a presentation: title, section divider, content, quote, and closing.</p>
+      </div>
+    </header>
+
+    <div class="frame-row">
+      <div class="frame-card">
+        <div class="frame-thumb"><iframe src="slides/TitleSlide.html" loading="lazy" title="Title slide"></iframe></div>
+        <div class="frame-meta"><b>Title</b><a href="slides/TitleSlide.html" target="_blank">slides/TitleSlide.html →</a></div>
+      </div>
+      <div class="frame-card">
+        <div class="frame-thumb"><iframe src="slides/SectionSlide.html" loading="lazy" title="Section slide"></iframe></div>
+        <div class="frame-meta"><b>Section divider</b><a href="slides/SectionSlide.html" target="_blank">slides/SectionSlide.html →</a></div>
+      </div>
+      <div class="frame-card">
+        <div class="frame-thumb"><iframe src="slides/ContentSlide.html" loading="lazy" title="Content slide"></iframe></div>
+        <div class="frame-meta"><b>Content</b><a href="slides/ContentSlide.html" target="_blank">slides/ContentSlide.html →</a></div>
+      </div>
+      <div class="frame-card">
+        <div class="frame-thumb"><iframe src="slides/QuoteSlide.html" loading="lazy" title="Quote slide"></iframe></div>
+        <div class="frame-meta"><b>Quote</b><a href="slides/QuoteSlide.html" target="_blank">slides/QuoteSlide.html →</a></div>
+      </div>
+      <div class="frame-card" style="grid-column: 1 / -1;">
+        <div class="frame-thumb"><iframe src="slides/ClosingSlide.html" loading="lazy" title="Closing slide"></iframe></div>
+        <div class="frame-meta"><b>Closing</b><a href="slides/ClosingSlide.html" target="_blank">slides/ClosingSlide.html →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 09 UI KIT ─── -->
+<section class="section" id="uikit" data-screen-label="09 UI kit">
+  <div class="page">
+    <header class="section-head">
+      <div class="section-num">Section <strong>09</strong></div>
+      <div>
+        <h2 style="font-size: clamp(40px, 6.5vw, 88px)">UI kit · <em>marketing.</em></h2>
+        <p class="section-sub">A live homepage built on the system — the canonical reference for digital surfaces. Bilingual, photographic, with the chateau at the center.</p>
+      </div>
+    </header>
+
+    <div class="frame-row">
+      <div class="frame-card uikit-card">
+        <div class="frame-thumb"><iframe src="ui_kits/marketing_site/index.html" loading="lazy" title="Marketing site"></iframe></div>
+        <div class="frame-meta"><b>Homepage · ywamchateau.com</b><a href="ui_kits/marketing_site/index.html" target="_blank">Open full ↗</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOT ─── -->
+<footer class="foot">
+  <div class="page" style="display: contents;">
+    <div class="col-label">Colophon</div>
+    <div>
+      <p>Set in Cormorant Garamond and Inter, with Noto Serif KR and Noto Sans KR for Korean. Designed at the chateau and in Colorado Springs, between cohorts.</p>
+      <p>This page is a living reference — components and tokens may shift as the brand grows; the principles below them won't.</p>
+      <div class="colophon">YWAM Château · Design System v1.0 · April 2026 · info@ywamchateau.com</div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ─── TWEAKS ─── -->
+<div id="tweaks-root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="tweaks-app.jsx"></script>
+
+</body></html>

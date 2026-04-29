@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Voice &amp; copy</title>
+<link rel="stylesheet" href="../colors_and_type.css?v=20260425b" />
+
+<style id="__inline_tokens">
+:root{
+  --cream:#F5F0E8; --blush:#E8D4C6; --gold:#C8922A; --gold-deep:#A8791E;
+  --sage:#8FA68E; --terra:#C57B57; --stone:#2B2620; --stone-soft:#4A4037;
+  --pale-sky:#D4DEE2;
+  --ok-deep:#1A2A3A; --ok-falls:#3A6878; --ok-mist:#8EB8C2; --ok-reach:#B8D8E4; --ok-sky:#D4DEE2;
+  --stone-900:#1a1713; --stone-700:#3A322B; --stone-500:#6C6258; --stone-400:#8A8178;
+  --stone-300:#AFA79D; --stone-200:#CEC7BD; --stone-100:#E8E4DC; --paper:#FFFFFF;
+  --ink:var(--stone); --foundation:var(--stone); --bone:var(--stone-100); --linen:var(--stone-100);
+  --interior:var(--cream); --touch:var(--blush); --hearth:var(--terra);
+  --amber:var(--gold); --amber-deep:var(--gold-deep); --moss:var(--sage); --moss-soft:var(--sage);
+  --moss-deep:#2A3D28; --refuge-forest:#2A3D28; --garden:var(--sage);
+  --bg:var(--cream); --bg-alt:var(--blush); --bg-panel:var(--stone-100); --bg-inverse:var(--stone); --bg-brand:var(--gold);
+  --fg:var(--stone); --fg-muted:var(--stone-soft); --fg-subtle:var(--stone-400); --fg-inverse:var(--cream);
+  --fg-brand:var(--gold-deep); --fg-accent:var(--terra);
+  --border:rgba(43,38,32,0.14); --border-soft:rgba(43,38,32,0.07); --divider:rgba(43,38,32,0.18);
+  --shadow-sm:0 1px 2px rgba(43,38,32,0.06),0 1px 1px rgba(43,38,32,0.04);
+  --shadow-md:0 14px 40px -12px rgba(43,38,32,0.25);
+  --shadow-lg:0 24px 60px -30px rgba(43,38,32,0.25);
+  --font-serif:"Cormorant Garamond","EB Garamond",Georgia,serif;
+  --font-sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --font-serif-ko:"Noto Serif KR","Cormorant Garamond",serif;
+  --font-sans-ko:"Noto Sans KR","Inter",sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --font-display:var(--font-serif);
+  --ko-serif-lean:500;
+  --radius-none:0; --radius-xs:4px; --radius-sm:6px; --radius-md:14px; --radius-lg:28px; --radius-pill:999px;
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: var(--cream); padding: 20px 28px; font-family: var(--font-sans); color: var(--stone); }
+  .eyebrow-line { font-family: var(--font-sans); font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--stone-soft); display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .eyebrow-line .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+  .col { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .h { font-family: var(--font-sans); font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 10px; color: var(--sage); }
+  .bad .h { color: var(--terra); }
+  p.q { margin: 0 0 8px; font-family: var(--font-serif); font-style: italic; font-size: 15px; line-height: 1.5; color: var(--stone); }
+  .bad p.q { color: var(--stone-soft); }
+  .mk { font-family: var(--font-sans); font-weight: 600; font-style: normal; margin-right: 6px; }
+  .ok { color: var(--sage); }
+  .x { color: var(--terra); }
+</style>
+</head>
+<body>
+  <span class="eyebrow-line"><span class="dot"></span>Voice · 목소리</span>
+  <div class="col">
+    <div>
+      <p class="h">Do — earnest, plain</p>
+      <p class="q"><span class="mk ok">✓</span>Draw near Jesus. Be transformed by His love. Live His Mission.</p>
+      <p class="q"><span class="mk ok">✓</span>As you listen, may your heart be moved by His compassion for the forgotten.</p>
+      <p class="q"><span class="mk ok">✓</span>Our team has already contributed $58,000 toward this project — together we can do more.</p>
+    </div>
+    <div class="bad">
+      <p class="h">Don't — performed, marketingy</p>
+      <p class="q"><span class="mk x">✕</span>Unlock your destiny with us! 🔥</p>
+      <p class="q"><span class="mk x">✕</span>Join our amazing journey of faith/hope/love 🙏</p>
+      <p class="q"><span class="mk x">✕</span>Discover what God is doing NOW.</p>
+    </div>
+  </div>
+</body>
+</html>

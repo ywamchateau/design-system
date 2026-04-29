@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Imagery tone</title>
+<link rel="stylesheet" href="../colors_and_type.css?v=20260425b" />
+
+<style id="__inline_tokens">
+:root{
+  --cream:#F5F0E8; --blush:#E8D4C6; --gold:#C8922A; --gold-deep:#A8791E;
+  --sage:#8FA68E; --terra:#C57B57; --stone:#2B2620; --stone-soft:#4A4037;
+  --pale-sky:#D4DEE2;
+  --ok-deep:#1A2A3A; --ok-falls:#3A6878; --ok-mist:#8EB8C2; --ok-reach:#B8D8E4; --ok-sky:#D4DEE2;
+  --stone-900:#1a1713; --stone-700:#3A322B; --stone-500:#6C6258; --stone-400:#8A8178;
+  --stone-300:#AFA79D; --stone-200:#CEC7BD; --stone-100:#E8E4DC; --paper:#FFFFFF;
+  --ink:var(--stone); --foundation:var(--stone); --bone:var(--stone-100); --linen:var(--stone-100);
+  --interior:var(--cream); --touch:var(--blush); --hearth:var(--terra);
+  --amber:var(--gold); --amber-deep:var(--gold-deep); --moss:var(--sage); --moss-soft:var(--sage);
+  --moss-deep:#2A3D28; --refuge-forest:#2A3D28; --garden:var(--sage);
+  --bg:var(--cream); --bg-alt:var(--blush); --bg-panel:var(--stone-100); --bg-inverse:var(--stone); --bg-brand:var(--gold);
+  --fg:var(--stone); --fg-muted:var(--stone-soft); --fg-subtle:var(--stone-400); --fg-inverse:var(--cream);
+  --fg-brand:var(--gold-deep); --fg-accent:var(--terra);
+  --border:rgba(43,38,32,0.14); --border-soft:rgba(43,38,32,0.07); --divider:rgba(43,38,32,0.18);
+  --shadow-sm:0 1px 2px rgba(43,38,32,0.06),0 1px 1px rgba(43,38,32,0.04);
+  --shadow-md:0 14px 40px -12px rgba(43,38,32,0.25);
+  --shadow-lg:0 24px 60px -30px rgba(43,38,32,0.25);
+  --font-serif:"Cormorant Garamond","EB Garamond",Georgia,serif;
+  --font-sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --font-serif-ko:"Noto Serif KR","Cormorant Garamond",serif;
+  --font-sans-ko:"Noto Sans KR","Inter",sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --font-display:var(--font-serif);
+  --ko-serif-lean:500;
+  --radius-none:0; --radius-xs:4px; --radius-sm:6px; --radius-md:14px; --radius-lg:28px; --radius-pill:999px;
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; padding: 14px; font-family: var(--font-sans); background: var(--cream); color: var(--stone); }
+  .eyebrow-line { font-family: var(--font-sans); font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--stone-soft); display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .eyebrow-line .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .cell { position: relative; aspect-ratio: 3/4; overflow: hidden; border-radius: var(--radius-sm); background: #ccc; display: flex; flex-direction: column; justify-content: flex-end; padding: 12px; }
+  .cell::after { content: ""; position: absolute; inset: 0; pointer-events: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.35'/></svg>"); mix-blend-mode: multiply; opacity: 0.45; }
+  .cell .gs { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(15,13,11,0.6) 100%); }
+  .cell .lbl { position: relative; color: var(--cream); font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: 14px; line-height: 1.3; z-index: 2; }
+  .cell .ko { position: relative; font-family: 'Noto Serif KR', serif; font-weight: 500; color: rgba(245,240,232,0.82); font-size: 11px; z-index: 2; margin-top: 3px; letter-spacing: 0.02em; }
+
+  .p1 { background:
+    radial-gradient(ellipse at 40% 35%, rgba(255,210,150,0.65), transparent 45%),
+    radial-gradient(ellipse at 60% 75%, rgba(43,38,32,0.75), transparent 50%),
+    linear-gradient(165deg, #5c3f28 0%, #2b2620 60%, #0f0d0b 100%); }
+  .p2 { background:
+    radial-gradient(ellipse at 30% 60%, rgba(143,166,142,0.55), transparent 55%),
+    linear-gradient(180deg, #b8b9a8 0%, #7d8470 45%, #4a4e3f 100%); }
+  .p3 { background:
+    radial-gradient(ellipse at 60% 45%, rgba(197,123,87,0.35), transparent 50%),
+    linear-gradient(180deg, #efe2cf 0%, #e8d4c6 55%, #c9b39e 100%); }
+  .p3 .lbl { color: var(--stone); }
+  .p3 .ko { color: rgba(43,38,32,0.72); }
+  .p4 { background:
+    radial-gradient(ellipse at 20% 30%, rgba(143,166,142,0.45), transparent 55%),
+    radial-gradient(ellipse at 75% 70%, rgba(197,123,87,0.4), transparent 50%),
+    linear-gradient(175deg, #3a4235 0%, #2b2620 50%, #1a1713 100%); }
+
+  .rules { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 28px; font-family: var(--font-sans); font-size: 12.5px; line-height: 1.55; }
+  .rules .k { font-family: var(--font-sans); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; margin-bottom: 6px; }
+  .rules .good .k { color: var(--sage); }
+  .rules .bad .k { color: var(--terra); }
+  .rules p { margin: 0 0 6px; color: var(--stone-soft); }
+</style>
+</head>
+<body>
+  <span class="eyebrow-line"><span class="dot"></span>Imagery · 이미지 톤</span>
+  <div class="grid">
+    <div class="cell p1"><div class="gs"></div>
+      <span class="lbl">Candid portrait · interior light</span>
+      <span class="ko">가까이 · 따뜻한 실내</span></div>
+    <div class="cell p2"><div class="gs"></div>
+      <span class="lbl">Château exterior · stone &amp; ivy</span>
+      <span class="ko">피난처의 벽</span></div>
+    <div class="cell p3">
+      <span class="lbl">Still life · linen, paper, bread</span>
+      <span class="ko">손의 온도</span></div>
+    <div class="cell p4"><div class="gs"></div>
+      <span class="lbl">Movement · hands, outreach</span>
+      <span class="ko">움직임 · 손</span></div>
+  </div>
+  <div class="rules">
+    <div class="good">
+      <p class="k">Do</p>
+      <p>Warm cast, low-ISO grain, shallow depth of field. Faces, hands, thresholds — candid, unposed.</p>
+      <p>Natural light: kitchen windows, candlelight, overcast exteriors. Italic Cormorant captions over a bottom protection gradient.</p>
+    </div>
+    <div class="bad">
+      <p class="k">Don't</p>
+      <p>No stock photography. No heavy retouching or skin smoothing. No cool/teal color grade.</p>
+      <p>No staged group shots with arms around shoulders. No lens flares, no HDR, no synthetic bokeh.</p>
+    </div>
+  </div>
+</body>
+</html>
