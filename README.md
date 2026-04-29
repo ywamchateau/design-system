@@ -68,14 +68,16 @@ Claude can use `gh api` or curl raw GitHub URLs to fetch a single file without c
 ## How updates flow
 
 1. Someone iterates the design system in **Claude Design** (claude.ai/design)
-2. They export the bundle (zip)
-3. Push the updated content to **this repo** (overwrite or PR-based, pick what works)
-4. Tag a new version: `git tag v1.2 && git push origin v1.2` (optional but useful)
+2. They export the bundle (zip) and save to `~/Downloads/`
+3. Open Claude Code at this repo, say *"update from `~/Downloads/<filename>.zip`"*
+4. Claude follows **[UPDATE.md](./UPDATE.md)** — extracts, diffs, surfaces changes for review, applies, commits, optionally tags a version
 5. Each project repo decides when to re-sync its snapshot. Usually:
    - For new colors/spacing tokens → re-sync `tokens.css`
    - For new logo variant → update the inline SVG
    - For new font weight → re-subset Korean
 6. The project commits the updated snapshot with a message like `chore: sync design tokens to design-system v1.2`
+
+The full step-by-step procedure for updating this repo is in **[UPDATE.md](./UPDATE.md)** — it's a runbook Claude follows so updates are consistent.
 
 ---
 
