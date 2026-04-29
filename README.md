@@ -2,6 +2,10 @@
 
 Canonical source of truth for the YWAM Château brand: tokens (color, type, spacing), fonts, logo lockups, and visual reference docs. This repo is the **upstream**. Project repos consume snapshots of it.
 
+> 🎨 **View the design system rendered:** https://ywamchateau.github.io/design-system/
+>
+> That URL serves the full design system reference page (colors, type, components, logos) so designers, reviewers, and future Claudes can see everything visually without cloning the repo.
+
 If you want to read the brand voice / typography / palette philosophy, see **[BRAND-GUIDE.md](./BRAND-GUIDE.md)** in this repo.
 
 ---
